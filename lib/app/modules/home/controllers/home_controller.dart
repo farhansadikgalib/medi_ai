@@ -25,7 +25,7 @@ class HomeController extends GetxController {
   static const List<HomeItem> items = [
     HomeItem('Global', FontAwesomeIcons.globe, Routes.GLOBAL),
     HomeItem('Register', FontAwesomeIcons.userPlus, Routes.REGISTER),
-    HomeItem('Login', FontAwesomeIcons.rightToBracket, Routes.REGISTER),
+    HomeItem('Login', FontAwesomeIcons.rightToBracket, Routes.LOGIN),
     HomeItem('Hospital', FontAwesomeIcons.hospital, Routes.HOSPITAL),
     HomeItem('Doctor', FontAwesomeIcons.userDoctor, Routes.DOCTOR),
     HomeItem('Ambulance', FontAwesomeIcons.truckMedical, Routes.AMBULANCE),
