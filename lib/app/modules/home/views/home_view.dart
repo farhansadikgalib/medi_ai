@@ -1,10 +1,11 @@
+// In lib/app/modules/home/views/home_view.dart
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:clay_containers/clay_containers.dart';
 import 'package:medi/core/style/app_colors.dart';
 import '../controllers/home_controller.dart';
 import 'dart:math';
-
 import '../widget/clay_circle_dashboard.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -12,16 +13,17 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    final size = Get.size;
-    final radius = size.width * 0.35;
-    final center = Offset(size.width / 2, size.height / 2);
+    final size = MediaQuery.of(context).size;
+    controller.calculateCircle(size);
+
+    final radius = controller.radius!;
+    final center = controller.center!;
 
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: Center(
         child: Stack(
           children: [
-            // Center profile/logo
             Positioned(
               left: center.dx - 48,
               top: center.dy - 48,
@@ -43,7 +45,6 @@ class HomeView extends GetView<HomeController> {
                 ),
               ),
             ),
-            // Circular dashboard items
             ...List.generate(HomeController.items.length, (i) {
               final angle = (2 * pi / HomeController.items.length) * i - pi / 2;
               final x = center.dx + radius * cos(angle) - 48;
