@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import '../../app/modules/home/bindings/home_binding.dart';
 import '../connection_manager/connection_manager_binding.dart';
 
 class InitialBinding extends Bindings {
@@ -7,6 +8,6 @@ class InitialBinding extends Bindings {
     ConnectionManagerBinding().dependencies();
     // AirportSearchBinding().dependencies();
     // CalenderPickerBinding().dependencies();
-    // HomeBinding().dependencies();
+    HomeBinding().dependencies();
   }
 }
