@@ -3,7 +3,7 @@ import 'package:logger/logger.dart';
 
 var logger = Logger();
 
-const Transition transition = Transition.cupertino;
+const Transition transition = Transition.circularReveal;
 const transitionDuration = 300; // in millisecond
 const otpResendDuration = 60; //in second
 const buttonCornerRadius = 20.0;
