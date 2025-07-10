@@ -15,10 +15,10 @@ import 'core/style/app_colors.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  WidgetsFlutterBinding.ensureInitialized();
 
   await ScreenUtil.ensureScreenSize();
-  runApp(ScreenUtilInit(
+  runApp(
+    ScreenUtilInit(
       designSize: const Size(360, 800),
       minTextAdapt: true,
       splitScreenMode: true,
@@ -27,12 +27,18 @@ Future<void> main() async {
           DeviceOrientation.portraitUp,
           DeviceOrientation.portraitDown,
         ]);
-        SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge,
-            overlays: [SystemUiOverlay.bottom]);
+        SystemChrome.setEnabledSystemUIMode(
+          SystemUiMode.edgeToEdge,
+          overlays: [SystemUiOverlay.bottom],
+        );
 
-        SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
-            statusBarIconBrightness: Brightness.dark));
+        SystemChrome.setSystemUIOverlayStyle(
+          const SystemUiOverlayStyle(
+            statusBarColor: Colors.white,
+            statusBarIconBrightness: Brightness.dark,
+            statusBarBrightness: Brightness.light, // For iOS
+          ),
+        );
 
         return SharedValue.wrapApp(
           GetMaterialApp(
@@ -54,6 +60,7 @@ Future<void> main() async {
             enableLog: kDebugMode,
           ),
         );
-      }));
+      },
+    ),
+  );
 }
-
