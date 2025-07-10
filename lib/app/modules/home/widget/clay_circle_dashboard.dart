@@ -2,6 +2,7 @@ import 'package:clay_containers/widgets/clay_container.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:medi/core/style/app_colors.dart';
 
 import '../model/home_items.dart';
 
@@ -9,8 +10,11 @@ class ClayCircleDashboardCard extends StatelessWidget {
   final HomeItem item;
   final Color baseColor;
 
-  const ClayCircleDashboardCard({super.key, required this.item, required this.baseColor});
-
+  const ClayCircleDashboardCard({
+    super.key,
+    required this.item,
+    required this.baseColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +31,14 @@ class ClayCircleDashboardCard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              FaIcon(item.icon, size: 32, color: const Color(0xFF185A9D)),
+              FaIcon(item.icon, size: 32, color: AppColors.primaryAccentColor),
               const SizedBox(height: 8),
               Text(
                 item.label,
                 style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
-                  color: Color(0xFF185A9D),
+                  color: AppColors.primaryAccentColor,
                 ),
                 textAlign: TextAlign.center,
               ),
