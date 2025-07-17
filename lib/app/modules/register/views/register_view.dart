@@ -55,7 +55,7 @@ class RegisterView extends GetView<RegisterController> {
                                 controller.subtitles[index],
                                 style: const TextStyle(
                                   fontSize: 16,
-                                  color: Colors.white,
+                                  color: AppColors.primaryAccentColor,
                                 ),
                               ),
                             ],
@@ -138,7 +138,7 @@ class RegisterView extends GetView<RegisterController> {
                       onChanged: (val) => controller.setAgreeTerms(val!),
                       title: const Text(
                         'I agree to the Terms and Conditions',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.black),
                       ),
                       controlAffinity: ListTileControlAffinity.leading,
                       activeColor: AppColors.primaryAccentColor,
@@ -148,7 +148,7 @@ class RegisterView extends GetView<RegisterController> {
                       onChanged: (val) => controller.setAgreePrivacy(val!),
                       title: const Text(
                         'I agree to the Privacy Policy',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.black),
                       ),
                       controlAffinity: ListTileControlAffinity.leading,
                       activeColor: AppColors.primaryAccentColor,

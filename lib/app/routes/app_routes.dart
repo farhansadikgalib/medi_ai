@@ -12,6 +12,7 @@ abstract class Routes {
   static const AMBULANCE = _Paths.AMBULANCE;
   static const PATIENT = _Paths.PATIENT;
   static const SPLASH = _Paths.SPLASH;
+  static const PATIENT_REGISTRATION = _Paths.PATIENT_REGISTRATION;
 }
 
 abstract class _Paths {
@@ -25,4 +26,5 @@ abstract class _Paths {
   static const AMBULANCE = '/ambulance';
   static const PATIENT = '/patient';
   static const SPLASH = '/splash';
+  static const PATIENT_REGISTRATION = '/patient-registration';
 }

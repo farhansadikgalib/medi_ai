@@ -14,6 +14,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/patient/bindings/patient_binding.dart';
 import '../modules/patient/views/patient_view.dart';
+import '../modules/patient_registration/bindings/patient_registration_binding.dart';
+import '../modules/patient_registration/views/patient_registration_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
@@ -29,7 +31,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () =>  HomeView(),
+      page: () => HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -39,12 +41,12 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.REGISTER,
-      page: () =>  RegisterView(),
+      page: () => RegisterView(),
       binding: RegisterBinding(),
     ),
     GetPage(
       name: _Paths.LOGIN,
-      page: () =>  LoginView(),
+      page: () => LoginView(),
       binding: LoginBinding(),
     ),
     GetPage(
@@ -71,6 +73,11 @@ class AppPages {
       name: _Paths.SPLASH,
       page: () => const SplashView(),
       binding: SplashBinding(),
+    ),
+    GetPage(
+      name: _Paths.PATIENT_REGISTRATION,
+      page: () => const PatientRegistrationView(),
+      binding: PatientRegistrationBinding(),
     ),
   ];
 }

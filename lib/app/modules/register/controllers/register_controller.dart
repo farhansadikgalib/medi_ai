@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
     import 'package:get/get.dart';
+import 'package:medi/core/helper/print_log.dart';
     import 'package:medi/generated/assets.dart';
 
     enum UserType { patient, hospital, ambulance }
@@ -28,9 +29,9 @@ import 'package:flutter/material.dart';
       ];
 
       final images = [
-        Assets.iconsIcHospital,
-        Assets.iconsIcHospital,
-        Assets.iconsIcHospital,
+        Assets.dashboardIconsL1,
+        Assets.categoryIconsEmergencyRoom,
+        Assets.categoryIconsRehabilitation,
       ];
 
       void onPageChanged(int index) {
@@ -62,6 +63,6 @@ import 'package:flutter/material.dart';
         selectedUserType = type;
         update();
         // Handle further navigation or logic here if needed
-        print('Selected user type: $type');
+        printLog('Selected user type: $type');
       }
     }
