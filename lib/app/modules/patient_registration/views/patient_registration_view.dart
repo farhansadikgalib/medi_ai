@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:clay_containers/widgets/clay_container.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
@@ -1319,8 +1321,7 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                   child: SizedBox(
                                     height: 45,
                                     child: ElevatedButton(
-                                      onPressed: controller.submitRegistration,
-                                      style: ElevatedButton.styleFrom(
+                                      onPressed: controller.goToNextPage,                                      style: ElevatedButton.styleFrom(
                                         backgroundColor:
                                             AppColors.primaryAccentColor,
                                         foregroundColor: Colors.white,
@@ -1331,7 +1332,7 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                         ),
                                         elevation: 0,
                                       ),
-                                      child: const Text('Submit'),
+                                      child: const Text('Next'),
                                     ),
                                   ),
                                 ),
@@ -1340,6 +1341,267 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                           ],
                         ),
                       ),
+                      // Page 6: Lifestyle and Preferences
+                      SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            ClayContainer(
+                              color: AppColors.primaryColor,
+                              borderRadius: 60,
+                              child: SizedBox(
+                                width: 100,
+                                height: 100,
+                                child: Icon(
+                                  Icons.health_and_safety,
+                                  size: 48,
+                                  color: AppColors.primaryAccentColor,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 24),
+                            ClayContainer(
+                              color: AppColors.primaryColor,
+                              borderRadius: 8,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 2),
+                                child: DropdownButtonFormField<String>(
+                                  value: controller.smokingHabits.value.isEmpty ? null : controller.smokingHabits.value,
+                                  items: ['Non-smoker', 'Occasional', 'Regular', 'Former smoker']
+                                      .map((s) => DropdownMenuItem(value: s, child: Text(s)))
+                                      .toList(),
+                                  onChanged: (val) => controller.smokingHabits.value = val ?? '',
+                                  decoration: const InputDecoration(
+                                    labelText: 'Smoking Habits',
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 12),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            ClayContainer(
+                              color: AppColors.primaryColor,
+                              borderRadius: 8,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 2),
+                                child: DropdownButtonFormField<String>(
+                                  value: controller.alcoholConsumption.value.isEmpty ? null : controller.alcoholConsumption.value,
+                                  items: ['Never', 'Occasional', 'Regular', 'Former drinker']
+                                      .map((a) => DropdownMenuItem(value: a, child: Text(a)))
+                                      .toList(),
+                                  onChanged: (val) => controller.alcoholConsumption.value = val ?? '',
+                                  decoration: const InputDecoration(
+                                    labelText: 'Alcohol Consumption',
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 12),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            ClayContainer(
+                              color: AppColors.primaryColor,
+                              borderRadius: 8,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 2),
+                                child: DropdownButtonFormField<String>(
+                                  value: controller.physicalActivity.value.isEmpty ? null : controller.physicalActivity.value,
+                                  items: ['Sedentary', 'Light', 'Moderate', 'Active']
+                                      .map((p) => DropdownMenuItem(value: p, child: Text(p)))
+                                      .toList(),
+                                  onChanged: (val) => controller.physicalActivity.value = val ?? '',
+                                  decoration: const InputDecoration(
+                                    labelText: 'Physical Activity Level',
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 12),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            ClayContainer(
+                              color: AppColors.primaryColor,
+                              borderRadius: 8,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 2),
+                                child: DropdownButtonFormField<String>(
+                                  value: controller.preferences.value.isEmpty ? null : controller.preferences.value,
+                                  items: ['None', 'Vegetarian', 'Vegan', 'Gluten-Free', 'Lactose-Free', 'Other']
+                                      .map((p) => DropdownMenuItem(value: p, child: Text(p)))
+                                      .toList(),
+                                  onChanged: (val) => controller.preferences.value = val ?? '',
+                                  decoration: const InputDecoration(
+                                    labelText: 'Preferences/Restrictions',
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 12),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 32),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: SizedBox(
+                                    height: 45,
+                                    child: ElevatedButton(
+                                      onPressed: controller.goToPreviousPage,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.white12,
+                                        foregroundColor: AppColors.primaryAccentColor,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(8),
+                                        ),
+                                        elevation: 0,
+                                      ),
+                                      child: const Text('Back'),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 16),
+                                Expanded(
+                                  child: SizedBox(
+                                    height: 45,
+                                    child: ElevatedButton(
+                                      onPressed: controller.goToNextPage,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: AppColors.primaryAccentColor,
+                                        foregroundColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(8),
+                                        ),
+                                        elevation: 0,
+                                      ),
+                                      child: const Text('Next'),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+
+
+                      // Page 7: Upload Medical Documents/Images
+                      SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ClayContainer(
+                              color: AppColors.primaryColor,
+                              borderRadius: 60,
+                              child: SizedBox(
+                                width: 100,
+                                height: 100,
+                                child: Icon(
+                                  Icons.upload_file,
+                                  size: 48,
+                                  color: AppColors.primaryAccentColor,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 24),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 16),
+                              child: Text(
+                                'Upload X-rays, medication images, doctor diagnoses, or any pertinent files related to your health. In emergencies or as needed, these documents can be reviewed by healthcare professionals with your prior permission for more informed and efficient care.',
+                                style: TextStyle(color: Colors.black87, fontSize: 15),
+                              ),
+                            ),
+                            Obx(() => Wrap(
+                              spacing: 8,
+                              runSpacing: 8,
+                              children: List.generate(
+                                controller.uploadedImages.length,
+                                (index) => Stack(
+                                  alignment: Alignment.topRight,
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(8),
+                                      child: Image.file(
+                                        File(controller.uploadedImages[index].path),
+                                        width: 100,
+                                        height: 100,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    Positioned(
+                                      right: 0,
+                                      child: GestureDetector(
+                                        onTap: () => controller.removeImage(index),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.red,
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: const Icon(Icons.close, color: Colors.white, size: 20),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )),
+                            const SizedBox(height: 16),
+                            SizedBox(
+                              width: double.infinity,
+                              child: ElevatedButton.icon(
+                                onPressed: controller.pickImages,
+                                icon: const Icon(Icons.add_a_photo),
+                                label: const Text('Add Images'),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: AppColors.primaryAccentColor,
+                                  foregroundColor: Colors.white,
+                                  elevation: 0,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 32),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: SizedBox(
+                                    height: 45,
+                                    child: ElevatedButton(
+                                      onPressed: controller.goToPreviousPage,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.white12,
+                                        foregroundColor: AppColors.primaryAccentColor,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(8),
+                                        ),
+                                        elevation: 0,
+                                      ),
+                                      child: const Text('Back'),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 16),
+                                Expanded(
+                                  child: SizedBox(
+                                    height: 45,
+                                    child: ElevatedButton(
+                                      onPressed: controller.submitRegistration,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: AppColors.primaryAccentColor,
+                                        foregroundColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(8),
+                                        ),
+                                        elevation: 0,
+                                      ),
+                                      child: const Text('Complete'),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+
+
                     ],
                   ),
                 ),

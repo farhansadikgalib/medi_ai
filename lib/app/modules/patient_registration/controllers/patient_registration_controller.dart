@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import '../model/vaccination_entry.dart';
 import '../model/emergency_contact_entry.dart';
 
@@ -78,6 +79,33 @@ class PatientRegistrationController extends GetxController {
       update();
     }
   }
+
+  // Page 6: Lifestyle and preferences
+
+  final smokingHabits = ''.obs;
+  final alcoholConsumption = ''.obs;
+  final physicalActivity = ''.obs;
+  final preferences = ''.obs;
+
+
+  // Page 7: Image upload
+
+  final uploadedImages = <XFile>[].obs;
+
+
+  Future<void> pickImages() async {
+
+    final ImagePicker picker = ImagePicker();
+    final List<XFile>? images = await picker.pickMultiImage();
+    if (images != null) {
+      uploadedImages.addAll(images);
+    }
+  }
+
+  void removeImage(int index) {
+    uploadedImages.removeAt(index);
+  }
+
 
   // Navigation
   void goToNextPage() {
