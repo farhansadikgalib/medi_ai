@@ -1,50 +1,67 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:medi/generated/assets.dart';
+    import 'package:get/get.dart';
+    import 'package:medi/generated/assets.dart';
+
+    enum UserType { patient, hospital, ambulance }
 
     class RegisterController extends GetxController {
       final pageController = PageController();
-      var currentPage = 0;
+      int currentPage = 0;
+
+      bool showAgreement = false;
+      bool showUserTypeSelection = false;
+      bool agreeTerms = false;
+      bool agreePrivacy = false;
+
+      UserType? selectedUserType;
 
       final titles = [
         'Welcome',
         'Discover',
         'Connect',
-        'Learn',
-        'Grow',
-        'Get Started',
       ];
 
       final subtitles = [
         'Start your journey',
         'Find new features',
         'Meet new people',
-        'Expand your knowledge',
-        'Achieve your goals',
-        'Let\'s begin!',
       ];
 
       final images = [
         Assets.iconsIcHospital,
         Assets.iconsIcHospital,
         Assets.iconsIcHospital,
-        Assets.iconsIcHospital,
-        Assets.iconsIcHospital,
-        Assets.iconsIcHospital,
-
-      ];
-
-      final descriptions = [
-        'Welcome to our app! Experience a new way to manage your tasks.',
-        'Discover amazing features designed to boost your productivity.',
-        'Connect with like-minded individuals and grow your network.',
-        'Learn from the best resources and improve your skills.',
-        'Grow with us and reach new heights in your journey.',
-        'Ready to get started? Let\'s dive in!',
       ];
 
       void onPageChanged(int index) {
         currentPage = index;
         update();
+      }
+
+      void showAgreementSection() {
+        showAgreement = true;
+        update();
+      }
+
+      void setAgreeTerms(bool value) {
+        agreeTerms = value;
+        update();
+      }
+
+      void setAgreePrivacy(bool value) {
+        agreePrivacy = value;
+        update();
+      }
+
+      void showUserTypeSelectionSection() {
+        showUserTypeSelection = true;
+        update();
+      }
+
+      void selectUserType(UserType type) {
+        selectedUserType = type;
+        update();
+        // Handle further navigation or logic here if needed
+        print('Selected user type: $type');
       }
     }
