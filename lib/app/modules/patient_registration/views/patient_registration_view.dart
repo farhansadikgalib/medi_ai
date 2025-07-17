@@ -587,7 +587,7 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                   child: SizedBox(
                                     height: 45,
                                     child: ElevatedButton(
-                                      onPressed: controller.submitRegistration,
+                                      onPressed: controller.goToNextPage,
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor:
                                             AppColors.primaryAccentColor,
@@ -600,6 +600,738 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                         elevation: 0,
                                       ),
                                       child: const Text('Next'),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      // Page 3: Medical Details
+                      SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            ClayContainer(
+                              color: AppColors.primaryColor,
+                              borderRadius: 60,
+                              child: SizedBox(
+                                width: 100,
+                                height: 100,
+                                child: Icon(
+                                  Icons.medical_services,
+                                  size: 48,
+                                  color: AppColors.primaryAccentColor,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 24),
+                            ClayContainer(
+                              color: AppColors.primaryColor,
+                              borderRadius: 8,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 2,
+                                ),
+                                child: DropdownButtonFormField<String>(
+                                  value:
+                                      controller
+                                          .currentMedicalCondition
+                                          .value
+                                          .isEmpty
+                                      ? null
+                                      : controller
+                                            .currentMedicalCondition
+                                            .value,
+                                  items:
+                                      [
+                                            'None',
+                                            'Diabetes',
+                                            'Hypertension',
+                                            'Asthma',
+                                            'Heart Disease',
+                                            'Other',
+                                          ]
+                                          .map(
+                                            (c) => DropdownMenuItem(
+                                              value: c,
+                                              child: Text(c),
+                                            ),
+                                          )
+                                          .toList(),
+                                  onChanged: (val) =>
+                                      controller.currentMedicalCondition.value =
+                                          val ?? '',
+                                  decoration: const InputDecoration(
+                                    labelText:
+                                        'What is your current medical condition?*',
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            ClayContainer(
+                              color: AppColors.primaryColor,
+                              borderRadius: 8,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 2,
+                                ),
+                                child: DropdownButtonFormField<String>(
+                                  value:
+                                      controller
+                                          .diagnosedCondition
+                                          .value
+                                          .isEmpty
+                                      ? null
+                                      : controller.diagnosedCondition.value,
+                                  items:
+                                      [
+                                            'None',
+                                            'Cancer',
+                                            'Stroke',
+                                            'Kidney Disease',
+                                            'Liver Disease',
+                                            'Other',
+                                          ]
+                                          .map(
+                                            (c) => DropdownMenuItem(
+                                              value: c,
+                                              child: Text(c),
+                                            ),
+                                          )
+                                          .toList(),
+                                  onChanged: (val) =>
+                                      controller.diagnosedCondition.value =
+                                          val ?? '',
+                                  decoration: const InputDecoration(
+                                    labelText:
+                                        'Please indicate if you have ever been diagnosed with any of the following conditions:',
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            ClayContainer(
+                              color: AppColors.primaryColor,
+                              borderRadius: 8,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 2,
+                                ),
+                                child: DropdownButtonFormField<String>(
+                                  value:
+                                      controller.surgicalHistory.value.isEmpty
+                                      ? null
+                                      : controller.surgicalHistory.value,
+                                  items:
+                                      [
+                                            'None',
+                                            'Appendectomy',
+                                            'Gallbladder removal',
+                                            'Heart surgery',
+                                            'Other',
+                                          ]
+                                          .map(
+                                            (c) => DropdownMenuItem(
+                                              value: c,
+                                              child: Text(c),
+                                            ),
+                                          )
+                                          .toList(),
+                                  onChanged: (val) =>
+                                      controller.surgicalHistory.value =
+                                          val ?? '',
+                                  decoration: const InputDecoration(
+                                    labelText: 'What is your surgical history?',
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            ClayContainer(
+                              color: AppColors.primaryColor,
+                              borderRadius: 8,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 2,
+                                ),
+                                child: DropdownButtonFormField<String>(
+                                  value: controller.allergies.value.isEmpty
+                                      ? null
+                                      : controller.allergies.value,
+                                  items:
+                                      [
+                                            'None',
+                                            'Penicillin',
+                                            'Peanuts',
+                                            'Latex',
+                                            'Other',
+                                          ]
+                                          .map(
+                                            (c) => DropdownMenuItem(
+                                              value: c,
+                                              child: Text(c),
+                                            ),
+                                          )
+                                          .toList(),
+                                  onChanged: (val) =>
+                                      controller.allergies.value = val ?? '',
+                                  decoration: const InputDecoration(
+                                    labelText: 'Allergies',
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            ClayContainer(
+                              color: AppColors.primaryColor,
+                              borderRadius: 8,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 2,
+                                ),
+                                child: DropdownButtonFormField<String>(
+                                  value:
+                                      controller.underMedication.value.isEmpty
+                                      ? null
+                                      : controller.underMedication.value,
+                                  items: ['No', 'Yes']
+                                      .map(
+                                        (c) => DropdownMenuItem(
+                                          value: c,
+                                          child: Text(c),
+                                        ),
+                                      )
+                                      .toList(),
+                                  onChanged: (val) =>
+                                      controller.underMedication.value =
+                                          val ?? '',
+                                  decoration: const InputDecoration(
+                                    labelText:
+                                        'Are you under any medications?*',
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 32),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: SizedBox(
+                                    height: 45,
+                                    child: ElevatedButton(
+                                      onPressed: controller.goToPreviousPage,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.white12,
+                                        foregroundColor:
+                                            AppColors.primaryAccentColor,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                        ),
+                                        elevation: 0,
+                                      ),
+                                      child: const Text('Back'),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 16),
+                                Expanded(
+                                  child: SizedBox(
+                                    height: 45,
+                                    child: ElevatedButton(
+                                      onPressed: controller.goToNextPage,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            AppColors.primaryAccentColor,
+                                        foregroundColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                        ),
+                                        elevation: 0,
+                                      ),
+                                      child: const Text('Next'),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      // Page 4: Vaccination List
+                      SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            ClayContainer(
+                              color: AppColors.primaryColor,
+                              borderRadius: 60,
+                              child: SizedBox(
+                                width: 100,
+                                height: 100,
+                                child: Icon(
+                                  Icons.vaccines,
+                                  size: 48,
+                                  color: AppColors.primaryAccentColor,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 24),
+                            Obx(
+                              () => Column(
+                                children: List.generate(
+                                  controller.vaccinations.length,
+                                  (index) {
+                                    final entry =
+                                        controller.vaccinations[index];
+                                    return Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        ClayContainer(
+                                          color: AppColors.primaryColor,
+                                          borderRadius: 8,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 2,
+                                            ),
+                                            child: DropdownButtonFormField<String>(
+                                              value:
+                                                  entry
+                                                      .vaccineType
+                                                      .value
+                                                      .isEmpty
+                                                  ? null
+                                                  : entry.vaccineType.value,
+                                              items:
+                                                  [
+                                                        'COVID-19',
+                                                        'Influenza',
+                                                        'Hepatitis B',
+                                                        'Tetanus',
+                                                        'Other',
+                                                      ]
+                                                      .map(
+                                                        (c) => DropdownMenuItem(
+                                                          value: c,
+                                                          child: Text(c),
+                                                        ),
+                                                      )
+                                                      .toList(),
+                                              onChanged: (val) =>
+                                                  entry.vaccineType.value =
+                                                      val ?? '',
+                                              decoration: const InputDecoration(
+                                                labelText:
+                                                    'Any vaccinations you might have had in the past 12 Month?',
+                                                border: InputBorder.none,
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                      horizontal: 12,
+                                                    ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 8),
+                                        ClayContainer(
+                                          color: AppColors.primaryColor,
+                                          borderRadius: 8,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 2,
+                                            ),
+                                            child: TextField(
+                                              controller:
+                                                  entry.vaccineNameController,
+                                              decoration: const InputDecoration(
+                                                labelText: 'Vaccines',
+                                                border: InputBorder.none,
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                      horizontal: 12,
+                                                    ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 8),
+                                        ClayContainer(
+                                          color: AppColors.primaryColor,
+                                          borderRadius: 8,
+                                          child: ListTile(
+                                            title: Text(
+                                              entry.date.value == null
+                                                  ? 'Select Date'
+                                                  : '${entry.date.value!.year}-${entry.date.value!.month.toString().padLeft(2, '0')}-${entry.date.value!.day.toString().padLeft(2, '0')}',
+                                            ),
+                                            trailing: const Icon(
+                                              Icons.calendar_today,
+                                            ),
+                                            onTap: () => controller
+                                                .pickVaccinationDate(index),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 8),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            if (index > 0)
+                                              IconButton(
+                                                icon: const Icon(
+                                                  Icons.delete,
+                                                  color: Colors.red,
+                                                ),
+                                                onPressed: () => controller
+                                                    .removeVaccinationEntry(
+                                                      index,
+                                                    ),
+                                              ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 16),
+                                      ],
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                ElevatedButton.icon(
+                                  onPressed: controller.addVaccinationEntry,
+                                  icon: const Icon(Icons.add),
+                                  label: const Text('Add'),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        AppColors.primaryAccentColor,
+                                    foregroundColor: Colors.white,
+                                    elevation: 0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 32),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: SizedBox(
+                                    height: 45,
+                                    child: ElevatedButton(
+                                      onPressed: controller.goToPreviousPage,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.white12,
+                                        foregroundColor:
+                                            AppColors.primaryAccentColor,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                        ),
+                                        elevation: 0,
+                                      ),
+                                      child: const Text('Back'),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 16),
+                                Expanded(
+                                  child: SizedBox(
+                                    height: 45,
+                                    child: ElevatedButton(
+                                      onPressed: controller.goToNextPage,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            AppColors.primaryAccentColor,
+                                        foregroundColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                        ),
+                                        elevation: 0,
+                                      ),
+                                      child: const Text('Next'),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      // Page 5: Emergency Contacts
+                      SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            ClayContainer(
+                              color: AppColors.primaryColor,
+                              borderRadius: 60,
+                              child: SizedBox(
+                                width: 100,
+                                height: 100,
+                                child: Icon(
+                                  Icons.contact_phone,
+                                  size: 48,
+                                  color: AppColors.primaryAccentColor,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 24),
+                            Obx(
+                              () => Column(
+                                children: List.generate(
+                                  controller.emergencyContacts.length,
+                                  (index) {
+                                    final entry =
+                                        controller.emergencyContacts[index];
+                                    return Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        ClayContainer(
+                                          color: AppColors.primaryColor,
+                                          borderRadius: 8,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 2,
+                                            ),
+                                            child: TextField(
+                                              controller: entry.nameController,
+                                              decoration: const InputDecoration(
+                                                labelText:
+                                                    'Name of Emergency Contact',
+                                                border: InputBorder.none,
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                      horizontal: 12,
+                                                    ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 8),
+                                        ClayContainer(
+                                          color: AppColors.primaryColor,
+                                          borderRadius: 8,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 2,
+                                            ),
+                                            child: TextField(
+                                              controller: entry.phoneController,
+                                              decoration: const InputDecoration(
+                                                labelText:
+                                                    'Phone Number with country code',
+                                                border: InputBorder.none,
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                      horizontal: 12,
+                                                    ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 8),
+                                        ClayContainer(
+                                          color: AppColors.primaryColor,
+                                          borderRadius: 8,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 2,
+                                            ),
+                                            child: Obx(
+                                              () => DropdownButtonFormField<String>(
+                                                value:
+                                                    entry
+                                                        .relationship
+                                                        .value
+                                                        .isEmpty
+                                                    ? null
+                                                    : entry.relationship.value,
+                                                items:
+                                                    [
+                                                          'Parent',
+                                                          'Sibling',
+                                                          'Spouse',
+                                                          'Friend',
+                                                          'Colleague',
+                                                          'Other',
+                                                        ]
+                                                        .map(
+                                                          (c) =>
+                                                              DropdownMenuItem(
+                                                                value: c,
+                                                                child: Text(c),
+                                                              ),
+                                                        )
+                                                        .toList(),
+                                                onChanged: (val) =>
+                                                    entry.relationship.value =
+                                                        val ?? '',
+                                                decoration:
+                                                    const InputDecoration(
+                                                      labelText: 'Relationship',
+                                                      border: InputBorder.none,
+                                                      contentPadding:
+                                                          EdgeInsets.symmetric(
+                                                            horizontal: 12,
+                                                          ),
+                                                    ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 8),
+                                        ClayContainer(
+                                          color: AppColors.primaryColor,
+                                          borderRadius: 8,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 2,
+                                            ),
+                                            child: TextField(
+                                              controller: entry.emailController,
+                                              decoration: const InputDecoration(
+                                                labelText: 'Email',
+                                                border: InputBorder.none,
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                      horizontal: 12,
+                                                    ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 8),
+                                        ClayContainer(
+                                          color: AppColors.primaryColor,
+                                          borderRadius: 8,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 2,
+                                            ),
+                                            child: TextField(
+                                              controller:
+                                                  entry.mediAiIdController,
+                                              decoration: const InputDecoration(
+                                                labelText: 'MediAi ID',
+                                                border: InputBorder.none,
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                      horizontal: 12,
+                                                    ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 8),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            if (index > 0)
+                                              IconButton(
+                                                icon: const Icon(
+                                                  Icons.delete,
+                                                  color: Colors.red,
+                                                ),
+                                                onPressed: () => controller
+                                                    .removeEmergencyContactEntry(
+                                                      index,
+                                                    ),
+                                              ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 16),
+                                      ],
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                ElevatedButton.icon(
+                                  onPressed:
+                                      controller.addEmergencyContactEntry,
+                                  icon: const Icon(Icons.add),
+                                  label: const Text('Add'),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        AppColors.primaryAccentColor,
+                                    foregroundColor: Colors.white,
+                                    elevation: 0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 32),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: SizedBox(
+                                    height: 45,
+                                    child: ElevatedButton(
+                                      onPressed: controller.goToPreviousPage,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.white12,
+                                        foregroundColor:
+                                            AppColors.primaryAccentColor,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                        ),
+                                        elevation: 0,
+                                      ),
+                                      child: const Text('Back'),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 16),
+                                Expanded(
+                                  child: SizedBox(
+                                    height: 45,
+                                    child: ElevatedButton(
+                                      onPressed: controller.submitRegistration,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            AppColors.primaryAccentColor,
+                                        foregroundColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                        ),
+                                        elevation: 0,
+                                      ),
+                                      child: const Text('Submit'),
                                     ),
                                   ),
                                 ),
