@@ -40,6 +40,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                             ClayContainer(
                               color: AppColors.primaryColor,
                               borderRadius: 60,
+                              depth: 12,
+                              spread: 6,
                               child: SizedBox(
                                 width: 100,
                                 height: 100,
@@ -54,6 +56,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                             Row(
                               children: [
                                 ClayContainer(
+                                  depth: 16,
+                                  spread: 2,
                                   color: AppColors.primaryColor,
                                   borderRadius: 8,
                                   child: CountryCodePicker(
@@ -79,8 +83,11 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                 const SizedBox(width: 8),
                                 Expanded(
                                   child: ClayContainer(
+                                    depth: 16,
+                                    spread: 2,
                                     color: AppColors.primaryColor,
                                     borderRadius: 8,
+
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(
                                         vertical: 2,
@@ -103,6 +110,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                             ),
                             const SizedBox(height: 16),
                             ClayContainer(
+                              depth: 16,
+                              spread: 2,
                               color: AppColors.primaryColor,
                               borderRadius: 8,
                               child: Padding(
@@ -124,6 +133,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                             const SizedBox(height: 16),
                             Obx(
                               () => ClayContainer(
+                                depth: 16,
+                                spread: 2,
                                 color: AppColors.primaryColor,
                                 borderRadius: 8,
                                 child: Padding(
@@ -185,6 +196,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                         child: Column(
                           children: [
                             ClayContainer(
+                              depth: 16,
+                              spread: 2,
                               color: AppColors.primaryColor,
                               borderRadius: 60,
                               child: SizedBox(
@@ -202,6 +215,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                               children: [
                                 Expanded(
                                   child: ClayContainer(
+                                    depth: 16,
+                                    spread: 2,
                                     color: AppColors.primaryColor,
                                     borderRadius: 8,
                                     child: Padding(
@@ -225,6 +240,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                 const SizedBox(width: 8),
                                 Expanded(
                                   child: ClayContainer(
+                                    depth: 16,
+                                    spread: 2,
                                     color: AppColors.primaryColor,
                                     borderRadius: 8,
                                     child: Padding(
@@ -252,6 +269,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                               children: [
                                 Expanded(
                                   child: ClayContainer(
+                                    depth: 16,
+                                    spread: 2,
                                     color: AppColors.primaryColor,
                                     borderRadius: 8,
                                     child: Padding(
@@ -276,6 +295,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                 const SizedBox(width: 8),
                                 Expanded(
                                   child: ClayContainer(
+                                    depth: 16,
+                                    spread: 2,
                                     color: AppColors.primaryColor,
                                     borderRadius: 8,
                                     child: Padding(
@@ -303,6 +324,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                               children: [
                                 Expanded(
                                   child: ClayContainer(
+                                    depth: 16,
+                                    spread: 2,
                                     color: AppColors.primaryColor,
                                     borderRadius: 8,
                                     child: Padding(
@@ -337,6 +360,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                 const SizedBox(width: 8),
                                 Expanded(
                                   child: ClayContainer(
+                                    depth: 16,
+                                    spread: 2,
                                     color: AppColors.primaryColor,
                                     borderRadius: 8,
                                     child: Padding(
@@ -387,6 +412,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                               children: [
                                 Expanded(
                                   child: ClayContainer(
+                                    depth: 16,
+                                    spread: 2,
                                     color: AppColors.primaryColor,
                                     borderRadius: 8,
                                     child: Padding(
@@ -410,6 +437,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                 const SizedBox(width: 8),
                                 Expanded(
                                   child: ClayContainer(
+                                    depth: 16,
+                                    spread: 2,
                                     color: AppColors.primaryColor,
                                     borderRadius: 8,
                                     child: Padding(
@@ -434,6 +463,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                             ),
                             const SizedBox(height: 16),
                             ClayContainer(
+                              depth: 16,
+                              spread: 2,
                               color: AppColors.primaryColor,
                               borderRadius: 8,
                               child: Padding(
@@ -454,6 +485,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                             ),
                             const SizedBox(height: 16),
                             ClayContainer(
+                              depth: 16,
+                              spread: 2,
                               color: AppColors.primaryColor,
                               borderRadius: 8,
                               child: Padding(
@@ -474,6 +507,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                             ),
                             const SizedBox(height: 16),
                             ClayContainer(
+                              depth: 16,
+                              spread: 2,
                               color: AppColors.primaryColor,
                               borderRadius: 8,
                               child: Padding(
@@ -494,6 +529,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                             ),
                             const SizedBox(height: 16),
                             ClayContainer(
+                              depth: 16,
+                              spread: 2,
                               color: AppColors.primaryColor,
                               borderRadius: 8,
                               child: Padding(
@@ -517,6 +554,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                               children: [
                                 Expanded(
                                   child: ClayContainer(
+                                    depth: 16,
+                                    spread: 2,
                                     color: AppColors.primaryColor,
                                     borderRadius: 8,
                                     child: Padding(
@@ -539,6 +578,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                 const SizedBox(width: 8),
                                 Expanded(
                                   child: ClayContainer(
+                                    depth: 16,
+                                    spread: 2,
                                     color: AppColors.primaryColor,
                                     borderRadius: 8,
                                     child: Padding(
@@ -615,6 +656,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                         child: Column(
                           children: [
                             ClayContainer(
+                              depth: 16,
+                              spread: 2,
                               color: AppColors.primaryColor,
                               borderRadius: 60,
                               child: SizedBox(
@@ -629,6 +672,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                             ),
                             const SizedBox(height: 24),
                             ClayContainer(
+                              depth: 16,
+                              spread: 2,
                               color: AppColors.primaryColor,
                               borderRadius: 8,
                               child: Padding(
@@ -677,6 +722,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                             ),
                             const SizedBox(height: 16),
                             ClayContainer(
+                              depth: 16,
+                              spread: 2,
                               color: AppColors.primaryColor,
                               borderRadius: 8,
                               child: Padding(
@@ -723,6 +770,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                             ),
                             const SizedBox(height: 16),
                             ClayContainer(
+                              depth: 16,
+                              spread: 2,
                               color: AppColors.primaryColor,
                               borderRadius: 8,
                               child: Padding(
@@ -764,6 +813,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                             ),
                             const SizedBox(height: 16),
                             ClayContainer(
+                              depth: 16,
+                              spread: 2,
                               color: AppColors.primaryColor,
                               borderRadius: 8,
                               child: Padding(
@@ -803,6 +854,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                             ),
                             const SizedBox(height: 16),
                             ClayContainer(
+                              depth: 16,
+                              spread: 2,
                               color: AppColors.primaryColor,
                               borderRadius: 8,
                               child: Padding(
@@ -890,6 +943,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                         child: Column(
                           children: [
                             ClayContainer(
+                              depth: 16,
+                              spread: 2,
                               color: AppColors.primaryColor,
                               borderRadius: 60,
                               child: SizedBox(
@@ -915,6 +970,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         ClayContainer(
+                                          depth: 16,
+                                          spread: 2,
                                           color: AppColors.primaryColor,
                                           borderRadius: 8,
                                           child: Padding(
@@ -961,6 +1018,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                         ),
                                         const SizedBox(height: 8),
                                         ClayContainer(
+                                          depth: 16,
+                                          spread: 2,
                                           color: AppColors.primaryColor,
                                           borderRadius: 8,
                                           child: Padding(
@@ -983,6 +1042,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                         ),
                                         const SizedBox(height: 8),
                                         ClayContainer(
+                                          depth: 16,
+                                          spread: 2,
                                           color: AppColors.primaryColor,
                                           borderRadius: 8,
                                           child: ListTile(
@@ -1092,6 +1153,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                         child: Column(
                           children: [
                             ClayContainer(
+                              depth: 16,
+                              spread: 2,
                               color: AppColors.primaryColor,
                               borderRadius: 60,
                               child: SizedBox(
@@ -1117,6 +1180,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         ClayContainer(
+                                          depth: 16,
+                                          spread: 2,
                                           color: AppColors.primaryColor,
                                           borderRadius: 8,
                                           child: Padding(
@@ -1139,6 +1204,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                         ),
                                         const SizedBox(height: 8),
                                         ClayContainer(
+                                          depth: 16,
+                                          spread: 2,
                                           color: AppColors.primaryColor,
                                           borderRadius: 8,
                                           child: Padding(
@@ -1161,6 +1228,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                         ),
                                         const SizedBox(height: 8),
                                         ClayContainer(
+                                          depth: 16,
+                                          spread: 2,
                                           color: AppColors.primaryColor,
                                           borderRadius: 8,
                                           child: Padding(
@@ -1211,6 +1280,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                         ),
                                         const SizedBox(height: 8),
                                         ClayContainer(
+                                          depth: 16,
+                                          spread: 2,
                                           color: AppColors.primaryColor,
                                           borderRadius: 8,
                                           child: Padding(
@@ -1232,6 +1303,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                         ),
                                         const SizedBox(height: 8),
                                         ClayContainer(
+                                          depth: 16,
+                                          spread: 2,
                                           color: AppColors.primaryColor,
                                           borderRadius: 8,
                                           child: Padding(
@@ -1321,7 +1394,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                   child: SizedBox(
                                     height: 45,
                                     child: ElevatedButton(
-                                      onPressed: controller.goToNextPage,                                      style: ElevatedButton.styleFrom(
+                                      onPressed: controller.goToNextPage,
+                                      style: ElevatedButton.styleFrom(
                                         backgroundColor:
                                             AppColors.primaryAccentColor,
                                         foregroundColor: Colors.white,
@@ -1346,6 +1420,8 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                         child: Column(
                           children: [
                             ClayContainer(
+                              depth: 16,
+                              spread: 2,
                               color: AppColors.primaryColor,
                               borderRadius: 60,
                               child: SizedBox(
@@ -1360,80 +1436,170 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                             ),
                             const SizedBox(height: 24),
                             ClayContainer(
+                              depth: 16,
+                              spread: 2,
                               color: AppColors.primaryColor,
                               borderRadius: 8,
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 2),
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 2,
+                                ),
                                 child: DropdownButtonFormField<String>(
-                                  value: controller.smokingHabits.value.isEmpty ? null : controller.smokingHabits.value,
-                                  items: ['Non-smoker', 'Occasional', 'Regular', 'Former smoker']
-                                      .map((s) => DropdownMenuItem(value: s, child: Text(s)))
-                                      .toList(),
-                                  onChanged: (val) => controller.smokingHabits.value = val ?? '',
+                                  value: controller.smokingHabits.value.isEmpty
+                                      ? null
+                                      : controller.smokingHabits.value,
+                                  items:
+                                      [
+                                            'Non-smoker',
+                                            'Occasional',
+                                            'Regular',
+                                            'Former smoker',
+                                          ]
+                                          .map(
+                                            (s) => DropdownMenuItem(
+                                              value: s,
+                                              child: Text(s),
+                                            ),
+                                          )
+                                          .toList(),
+                                  onChanged: (val) =>
+                                      controller.smokingHabits.value =
+                                          val ?? '',
                                   decoration: const InputDecoration(
                                     labelText: 'Smoking Habits',
                                     border: InputBorder.none,
-                                    contentPadding: EdgeInsets.symmetric(horizontal: 12),
+                                    contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                             const SizedBox(height: 16),
                             ClayContainer(
+                              depth: 16,
+                              spread: 2,
                               color: AppColors.primaryColor,
                               borderRadius: 8,
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 2),
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 2,
+                                ),
                                 child: DropdownButtonFormField<String>(
-                                  value: controller.alcoholConsumption.value.isEmpty ? null : controller.alcoholConsumption.value,
-                                  items: ['Never', 'Occasional', 'Regular', 'Former drinker']
-                                      .map((a) => DropdownMenuItem(value: a, child: Text(a)))
-                                      .toList(),
-                                  onChanged: (val) => controller.alcoholConsumption.value = val ?? '',
+                                  value:
+                                      controller
+                                          .alcoholConsumption
+                                          .value
+                                          .isEmpty
+                                      ? null
+                                      : controller.alcoholConsumption.value,
+                                  items:
+                                      [
+                                            'Never',
+                                            'Occasional',
+                                            'Regular',
+                                            'Former drinker',
+                                          ]
+                                          .map(
+                                            (a) => DropdownMenuItem(
+                                              value: a,
+                                              child: Text(a),
+                                            ),
+                                          )
+                                          .toList(),
+                                  onChanged: (val) =>
+                                      controller.alcoholConsumption.value =
+                                          val ?? '',
                                   decoration: const InputDecoration(
                                     labelText: 'Alcohol Consumption',
                                     border: InputBorder.none,
-                                    contentPadding: EdgeInsets.symmetric(horizontal: 12),
+                                    contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                             const SizedBox(height: 16),
                             ClayContainer(
+                              depth: 16,
+                              spread: 2,
                               color: AppColors.primaryColor,
                               borderRadius: 8,
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 2),
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 2,
+                                ),
                                 child: DropdownButtonFormField<String>(
-                                  value: controller.physicalActivity.value.isEmpty ? null : controller.physicalActivity.value,
-                                  items: ['Sedentary', 'Light', 'Moderate', 'Active']
-                                      .map((p) => DropdownMenuItem(value: p, child: Text(p)))
-                                      .toList(),
-                                  onChanged: (val) => controller.physicalActivity.value = val ?? '',
+                                  value:
+                                      controller.physicalActivity.value.isEmpty
+                                      ? null
+                                      : controller.physicalActivity.value,
+                                  items:
+                                      [
+                                            'Sedentary',
+                                            'Light',
+                                            'Moderate',
+                                            'Active',
+                                          ]
+                                          .map(
+                                            (p) => DropdownMenuItem(
+                                              value: p,
+                                              child: Text(p),
+                                            ),
+                                          )
+                                          .toList(),
+                                  onChanged: (val) =>
+                                      controller.physicalActivity.value =
+                                          val ?? '',
                                   decoration: const InputDecoration(
                                     labelText: 'Physical Activity Level',
                                     border: InputBorder.none,
-                                    contentPadding: EdgeInsets.symmetric(horizontal: 12),
+                                    contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                             const SizedBox(height: 16),
                             ClayContainer(
+                              depth: 16,
+                              spread: 2,
                               color: AppColors.primaryColor,
                               borderRadius: 8,
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 2),
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 2,
+                                ),
                                 child: DropdownButtonFormField<String>(
-                                  value: controller.preferences.value.isEmpty ? null : controller.preferences.value,
-                                  items: ['None', 'Vegetarian', 'Vegan', 'Gluten-Free', 'Lactose-Free', 'Other']
-                                      .map((p) => DropdownMenuItem(value: p, child: Text(p)))
-                                      .toList(),
-                                  onChanged: (val) => controller.preferences.value = val ?? '',
+                                  value: controller.preferences.value.isEmpty
+                                      ? null
+                                      : controller.preferences.value,
+                                  items:
+                                      [
+                                            'None',
+                                            'Vegetarian',
+                                            'Vegan',
+                                            'Gluten-Free',
+                                            'Lactose-Free',
+                                            'Other',
+                                          ]
+                                          .map(
+                                            (p) => DropdownMenuItem(
+                                              value: p,
+                                              child: Text(p),
+                                            ),
+                                          )
+                                          .toList(),
+                                  onChanged: (val) =>
+                                      controller.preferences.value = val ?? '',
                                   decoration: const InputDecoration(
                                     labelText: 'Preferences/Restrictions',
                                     border: InputBorder.none,
-                                    contentPadding: EdgeInsets.symmetric(horizontal: 12),
+                                    contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1448,9 +1614,12 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                       onPressed: controller.goToPreviousPage,
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.white12,
-                                        foregroundColor: AppColors.primaryAccentColor,
+                                        foregroundColor:
+                                            AppColors.primaryAccentColor,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(8),
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
                                         ),
                                         elevation: 0,
                                       ),
@@ -1465,10 +1634,13 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                     child: ElevatedButton(
                                       onPressed: controller.goToNextPage,
                                       style: ElevatedButton.styleFrom(
-                                        backgroundColor: AppColors.primaryAccentColor,
+                                        backgroundColor:
+                                            AppColors.primaryAccentColor,
                                         foregroundColor: Colors.white,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(8),
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
                                         ),
                                         elevation: 0,
                                       ),
@@ -1482,13 +1654,13 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                         ),
                       ),
 
-
                       // Page 7: Upload Medical Documents/Images
                       SingleChildScrollView(
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             ClayContainer(
+                              depth: 16,
+                              spread: 2,
                               color: AppColors.primaryColor,
                               borderRadius: 60,
                               child: SizedBox(
@@ -1506,43 +1678,57 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                               padding: const EdgeInsets.only(bottom: 16),
                               child: Text(
                                 'Upload X-rays, medication images, doctor diagnoses, or any pertinent files related to your health. In emergencies or as needed, these documents can be reviewed by healthcare professionals with your prior permission for more informed and efficient care.',
-                                style: TextStyle(color: Colors.black87, fontSize: 15),
-                              ),
-                            ),
-                            Obx(() => Wrap(
-                              spacing: 8,
-                              runSpacing: 8,
-                              children: List.generate(
-                                controller.uploadedImages.length,
-                                (index) => Stack(
-                                  alignment: Alignment.topRight,
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(8),
-                                      child: Image.file(
-                                        File(controller.uploadedImages[index].path),
-                                        width: 100,
-                                        height: 100,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                    Positioned(
-                                      right: 0,
-                                      child: GestureDetector(
-                                        onTap: () => controller.removeImage(index),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: Colors.red,
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: const Icon(Icons.close, color: Colors.white, size: 20),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                                style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 15,
                                 ),
                               ),
-                            )),
+                            ),
+                            Obx(
+                              () => Wrap(
+                                spacing: 8,
+                                runSpacing: 8,
+                                children: List.generate(
+                                  controller.uploadedImages.length,
+                                  (index) => Stack(
+                                    alignment: Alignment.topRight,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(8),
+                                        child: Image.file(
+                                          File(
+                                            controller
+                                                .uploadedImages[index]
+                                                .path,
+                                          ),
+                                          width: 100,
+                                          height: 100,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      Positioned(
+                                        right: 0,
+                                        child: GestureDetector(
+                                          onTap: () =>
+                                              controller.removeImage(index),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Colors.red,
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: const Icon(
+                                              Icons.close,
+                                              color: Colors.white,
+                                              size: 20,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
                             const SizedBox(height: 16),
                             SizedBox(
                               width: double.infinity,
@@ -1567,9 +1753,12 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                       onPressed: controller.goToPreviousPage,
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.white12,
-                                        foregroundColor: AppColors.primaryAccentColor,
+                                        foregroundColor:
+                                            AppColors.primaryAccentColor,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(8),
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
                                         ),
                                         elevation: 0,
                                       ),
@@ -1584,10 +1773,13 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                     child: ElevatedButton(
                                       onPressed: controller.submitRegistration,
                                       style: ElevatedButton.styleFrom(
-                                        backgroundColor: AppColors.primaryAccentColor,
+                                        backgroundColor:
+                                            AppColors.primaryAccentColor,
                                         foregroundColor: Colors.white,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(8),
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
                                         ),
                                         elevation: 0,
                                       ),
@@ -1600,8 +1792,6 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                           ],
                         ),
                       ),
-
-
                     ],
                   ),
                 ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:medi/app/routes/app_pages.dart';
 import '../model/vaccination_entry.dart';
 import '../model/emergency_contact_entry.dart';
 
@@ -138,6 +139,7 @@ class PatientRegistrationController extends GetxController {
   }
 
   void submitRegistration() {
+    Get.toNamed(Routes.HOME);
     Get.snackbar('Success', 'Registration submitted!');
   }
 }
