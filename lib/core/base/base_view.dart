@@ -77,7 +77,7 @@ abstract class BaseView<Controller extends BaseController>
           child: Center(
             child: Text(
               _connectionController.connectedStatusMessage.value,
-              style: textRegularStyle(isWhiteColor: true),
+              style: textRegularStyle(isWhiteColor: false),
             ),
           )),
     );

@@ -45,7 +45,7 @@
                                         child: AnyImageView(
                                           imagePath: controller.images[index],
                                           height: 60,
-                                          boxFit: BoxFit.contain,
+                                          fit: BoxFit.contain,
                                         ),
                                       ),
                                     ),

@@ -48,7 +48,7 @@ class SplashView extends GetView<SplashController> {
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            'Medi AI',
+                            'appName'.tr,
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,

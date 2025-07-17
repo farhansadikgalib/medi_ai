@@ -11,6 +11,7 @@ import 'package:shared_value/shared_value.dart';
 import 'app/routes/app_pages.dart';
 import 'core/binding/initial_binding.dart';
 import 'core/constants/app_constants.dart';
+import 'core/helper/language_helper.dart';
 import 'core/style/app_colors.dart';
 
 Future<void> main() async {
@@ -55,6 +56,9 @@ Future<void> main() async {
                 Theme.of(context).textTheme,
               ),
             ),
+            locale: LocalizationService.locale,
+            fallbackLocale: LocalizationService.fallbackLocal,
+            translations: LocalizationService(),
             defaultTransition: transition,
             getPages: AppPages.routes,
             enableLog: kDebugMode,

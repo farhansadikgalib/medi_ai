@@ -243,7 +243,7 @@ class LoginView extends GetView<LoginController> {
                       ),
                       elevation: 0,
                     ),
-                    child: const Text('Login'),
+                    child:  Text('login'.tr),
                   ),
                 ),
                 const SizedBox(height: 8),

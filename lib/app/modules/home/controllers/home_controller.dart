@@ -2,11 +2,12 @@ import 'dart:ui';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:medi/core/base/base_controller.dart';
 
 import '../../../routes/app_pages.dart';
 import '../model/home_items.dart';
 
-class HomeController extends GetxController {
+class HomeController extends BaseController {
   double? radius;
   Offset? center;
 

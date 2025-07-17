@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../core/constants/app_constants.dart';
-
 import '../helper/app_widgets.dart';
 import '../helper/print_log.dart';
 import 'connection_type.dart';
@@ -14,42 +13,42 @@ import 'connection_type.dart';
 class ConnectionManagerController extends GetxController {
   final isInternetConnected = true.obs;
   final connectedStatusMessage = "No Internet Connection".obs;
-
-  /// use if [connectionType] is required.
   final connectionType = ConnectionType.wifi.obs;
 
   final Connectivity _connectivity = Connectivity();
-
-  late StreamSubscription _streamSubscription;
+  late StreamSubscription<List<ConnectivityResult>> _streamSubscription;
 
   @override
   void onInit() {
     super.onInit();
     _getConnectivityType();
     _streamSubscription =
-        _connectivity.onConnectivityChanged.listen(_updateState);
+        _connectivity.onConnectivityChanged.listen(_handleConnectivityChange);
   }
 
   @override
   void onClose() {
     _streamSubscription.cancel();
-
     printLog("On close initiated");
   }
 
   Future<void> _getConnectivityType() async {
-    late ConnectivityResult connectivityResult;
+    List<ConnectivityResult> results = [];
     try {
-      connectivityResult = await (_connectivity.checkConnectivity());
+      results = await _connectivity.checkConnectivity();
     } on PlatformException catch (e) {
       if (kDebugMode) {
         logger.d("PlatformException: $e");
       }
     }
-    return _updateState(connectivityResult);
+    _updateState(results.isNotEmpty ? results.first : ConnectivityResult.none);
   }
 
-  _updateState(ConnectivityResult result) {
+  void _handleConnectivityChange(List<ConnectivityResult> results) {
+    _updateState(results.isNotEmpty ? results.first : ConnectivityResult.none);
+  }
+
+  void _updateState(ConnectivityResult result) {
     switch (result) {
       case ConnectivityResult.wifi:
         connectionType.value = ConnectionType.wifi;
@@ -59,14 +58,11 @@ class ConnectionManagerController extends GetxController {
       case ConnectivityResult.mobile:
         connectionType.value = ConnectionType.mobileData;
         isInternetConnected.value = true;
-
         connectedStatusMessage.value = "Mobile Data Connected";
-
         break;
       case ConnectivityResult.none:
         connectionType.value = ConnectionType.noInternet;
         isInternetConnected.value = false;
-
         connectedStatusMessage.value = "No Internet Connection";
         break;
       default:

@@ -3,16 +3,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:clay_containers/clay_containers.dart';
+import 'package:medi/core/base/base_view.dart';
 import 'package:medi/core/style/app_colors.dart';
 import '../controllers/home_controller.dart';
 import 'dart:math';
 import '../widget/clay_circle_dashboard.dart';
 
-class HomeView extends GetView<HomeController> {
-  const HomeView({super.key});
+class HomeView extends BaseView<HomeController> {
+
+
 
   @override
-  Widget build(BuildContext context) {
+  PreferredSizeWidget? appBar(BuildContext context) {
+
+    return null;
+  }
+
+  @override
+  Widget body(BuildContext context) {
     final size = MediaQuery.of(context).size;
     controller.calculateCircle(size);
 
