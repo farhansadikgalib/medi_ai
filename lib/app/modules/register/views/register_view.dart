@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:medi/app/routes/app_pages.dart';
 import '../../../../core/helper/print_log.dart';
 import '../../../../core/style/app_colors.dart';
 import '../controllers/register_controller.dart';
@@ -270,6 +271,15 @@ class RegisterView extends GetView<RegisterController> {
                                 // Handle registration continue with selected user type
                                 printLog('Continue with user type: ${controller
                                     .selectedUserType}');
+
+                                if(controller.selectedUserType == UserType.patient) {
+                                  Get.toNamed(Routes.PATIENT_REGISTRATION);
+                                } else if(controller.selectedUserType == UserType.hospital) {
+                                  // Get.toNamed('/hospital-registration');
+                                } else if(controller.selectedUserType == UserType.ambulance) {
+                                  // Get.toNamed('/ambulance-registration');
+                                }
+
                               }
                             : null,
                         child:  Text(

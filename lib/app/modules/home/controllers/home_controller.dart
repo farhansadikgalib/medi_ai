@@ -25,7 +25,7 @@ class HomeController extends BaseController {
 
   static const List<HomeItem> items = [
     HomeItem('Global', FontAwesomeIcons.globe, Routes.GLOBAL),
-    HomeItem('Register', FontAwesomeIcons.userPlus, Routes.REGISTER),
+    HomeItem('Register', FontAwesomeIcons.userPlus, Routes.PATIENT_REGISTRATION),
     HomeItem('Login', FontAwesomeIcons.rightToBracket, Routes.LOGIN),
     HomeItem('Hospital', FontAwesomeIcons.hospital, Routes.HOSPITAL),
     HomeItem('Doctor', FontAwesomeIcons.userDoctor, Routes.DOCTOR),
