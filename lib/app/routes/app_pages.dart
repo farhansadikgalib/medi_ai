@@ -12,6 +12,8 @@ import '../modules/hospital/bindings/hospital_binding.dart';
 import '../modules/hospital/views/hospital_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/onboarding/bindings/onboarding_binding.dart';
+import '../modules/onboarding/views/onboarding_view.dart';
 import '../modules/patient/bindings/patient_binding.dart';
 import '../modules/patient/views/patient_view.dart';
 import '../modules/patient_registration/bindings/patient_registration_binding.dart';
@@ -78,6 +80,11 @@ class AppPages {
       name: _Paths.PATIENT_REGISTRATION,
       page: () => const PatientRegistrationView(),
       binding: PatientRegistrationBinding(),
+    ),
+    GetPage(
+      name: _Paths.ONBOARDING,
+      page: () =>  OnboardingView(),
+      binding: OnboardingBinding(),
     ),
   ];
 }
