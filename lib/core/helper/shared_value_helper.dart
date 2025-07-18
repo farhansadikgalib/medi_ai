@@ -20,14 +20,11 @@ final SharedValue<String> userName = SharedValue(
   key: "userName",
 );
 
-final SharedValue<int> isAdmin = SharedValue(
-  value: 0,
-  key: "isAdmin",
+final SharedValue<bool> onBoardView = SharedValue(
+  value: true,
+  key: "onBoardView",
 );
 
 
-final SharedValue<int> isDriver = SharedValue(
-  value: 0,
-  key: "isDriver",
-);
+
 
