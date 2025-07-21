@@ -1,23 +1,37 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HospitalRegistrationController extends GetxController {
-  //TODO: Implement HospitalRegistrationController
+  final pageController = PageController();
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  // Page 1
+  final phoneController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  var isPasswordVisible = false.obs;
+  var countryCode = '+1'.obs;
+
+  // Page 2
+  var selectedType = ''.obs;
+
+  void selectType(String type) {
+    selectedType.value = type;
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  // Navigation
+  void goToNextPage() {
+    pageController.nextPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+    update();
   }
 
-  @override
-  void onClose() {
-    super.onClose();
+  void goToPreviousPage() {
+    pageController.previousPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+    update();
   }
-
-  void increment() => count.value++;
 }
