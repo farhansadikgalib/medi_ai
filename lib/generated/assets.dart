@@ -32,6 +32,9 @@ class Assets {
   static const String hMc2 = 'assets/dashboardIcons/h/mc2.png';
   static const String hMc3 = 'assets/dashboardIcons/h/mc3.png';
   static const String imageHospital = 'assets/image/hospital.png';
+  static const String onboarding1 = 'assets/onboarding/1.png';
+  static const String onboarding2 = 'assets/onboarding/2.png';
+  static const String onboarding3 = 'assets/onboarding/3.jpeg';
   static const String pA1 = 'assets/dashboardIcons/p/a1.png';
   static const String pDocs = 'assets/dashboardIcons/p/docs.png';
   static const String pF1 = 'assets/dashboardIcons/p/f1.png';

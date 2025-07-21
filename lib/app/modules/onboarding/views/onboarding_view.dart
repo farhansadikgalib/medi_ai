@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:clay_containers/clay_containers.dart';
+import '../../../../core/style/app_colors.dart';
 import '../controllers/onboarding_controller.dart';
 
 class OnboardingView extends GetView<OnboardingController> {
@@ -11,230 +12,270 @@ class OnboardingView extends GetView<OnboardingController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.primaryColor,
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: PageView.builder(
-                controller: _pageController,
-                physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (index) => controller.currentPage.value = index,
-                itemCount: controller.pages.length + 1,
-                itemBuilder: (context, index) {
-                  if (index == 0) {
-                    // Language selection page
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            const SizedBox(height: 60),
-                            const Text(
-                              'Welcome!',
+        child: Center(
+          child: Container(
+            width: Get.width / 1.10,
+            padding: const EdgeInsets.all(24),
+            decoration: BoxDecoration(
+              color: AppColors.primaryColor,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Center(
+              child: Column(
+                children: [
+                  // Skip button at the top right
+                  Obx(() {
+                    final showSkip =
+                        controller.currentPage.value > 0 &&
+                        controller.currentPage.value < controller.pages.length;
+                    return Row(
+                      children: [
+                        const Spacer(),
+                        if (showSkip)
+                          TextButton(
+                            onPressed: controller.finishOnboarding,
+                            child: Text(
+                              'Skip',
                               style: TextStyle(
-                                fontSize: 32,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.blueAccent,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            const SizedBox(height: 16),
-                            const Text(
-                              'Select your preferred language to continue.',
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.black54,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            const SizedBox(height: 48),
-                            // Only DropdownButton uses observable
-                            ClayContainer(
-                              color: Colors.white,
-                              borderRadius: 16,
-                              depth: 20,
-                              spread: 4,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 24,
-                                  vertical: 16,
-                                ),
-                                child: DropdownButtonHideUnderline(
-                                  child: Obx(
-                                    () => DropdownButton<String>(
-                                      value: controller.selectedLanguage.value,
-                                      items: const [
-                                        DropdownMenuItem(
-                                          value: 'en',
-                                          child: Text('English'),
-                                        ),
-                                        DropdownMenuItem(
-                                          value: 'bn',
-                                          child: Text('Bangla'),
-                                        ),
-                                      ],
-                                      onChanged: (val) {
-                                        if (val != null) {
-                                          controller.setLanguage(val);
-                                        }
-                                      },
-                                      isExpanded: true,
-                                    ),
-                                  ),
-                                ),
+                                color: AppColors.primaryAccentColor,
+                                fontSize: 14,
                               ),
                             ),
-                            const SizedBox(height: 48),
-                            // Only Row uses observable
-                            Obx(
-                              () => Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: List.generate(
-                                  controller.pages.length + 1,
-                                  (i) => Container(
-                                    margin: const EdgeInsets.symmetric(
-                                      horizontal: 4,
-                                    ),
-                                    width: 10,
-                                    height: 10,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: controller.currentPage.value == i
-                                          ? Colors.blueAccent
-                                          : Colors.grey[300],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                          ),
+                      ],
                     );
-                  } else {
-                    final page = controller.pages[index - 1];
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            const SizedBox(height: 40),
-                            if (index < controller.pages.length)
-                              Align(
-                                alignment: Alignment.topRight,
-                                child: TextButton(
-                                  onPressed: controller.finishOnboarding,
-                                  child: const Text(
-                                    'Skip',
+                  }),
+                  Expanded(
+                    child: PageView.builder(
+                      controller: _pageController,
+                      physics: const BouncingScrollPhysics(),
+                      onPageChanged: (index) =>
+                          controller.currentPage.value = index,
+                      itemCount: controller.pages.length + 1,
+                      itemBuilder: (context, index) {
+                        if (index == 0) {
+                          // Language selection page
+                          return Center(
+                            child: SingleChildScrollView(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const SizedBox(height: 40),
+                                  Text(
+                                    'Welcome!',
                                     style: TextStyle(
-                                      color: Colors.blueAccent,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.primaryAccentColor,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  const SizedBox(height: 12),
+                                  Text(
+                                    'Choose your language to get started.',
+                                    style: TextStyle(
                                       fontSize: 16,
+                                      color: Colors.black87,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  const SizedBox(height: 32),
+                                  ClayContainer(
+                                    color: AppColors.primaryColor,
+                                    borderRadius: 16,
+                                    depth: 20,
+                                    spread: 1,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 24,
+                                        vertical: 16,
+                                      ),
+                                      child: DropdownButtonHideUnderline(
+                                        child: Obx(
+                                          () => DropdownButton<String>(
+                                            value: controller
+                                                .selectedLanguage
+                                                .value,
+                                            items: controller.languages
+                                                .map(
+                                                  (lang) => DropdownMenuItem(
+                                                    value: lang['value'],
+                                                    child: Text(lang['text']!),
+                                                  ),
+                                                )
+                                                .toList(),
+                                            onChanged: (val) {
+                                              if (val != null) {
+                                                controller.setLanguage(val);
+                                              }
+                                            },
+                                            isExpanded: true,
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            const SizedBox(height: 20),
-                            ClayContainer(
-                              color: Colors.white,
-                              borderRadius: 24,
-                              depth: 40,
-                              spread: 8,
-                              child: Padding(
-                                padding: const EdgeInsets.all(24.0),
-                                child: Image.asset(
-                                  page['image']!,
-                                  height: 200,
-                                  fit: BoxFit.contain,
-                                ),
+                                  const SizedBox(height: 32),
+                                  Obx(
+                                    () => Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: List.generate(
+                                        controller.pages.length + 1,
+                                        (i) => Container(
+                                          margin: const EdgeInsets.symmetric(
+                                            horizontal: 4,
+                                          ),
+                                          width: 10,
+                                          height: 10,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color:
+                                                controller.currentPage.value ==
+                                                    i
+                                                ? AppColors.primaryAccentColor
+                                                : Colors.grey[300],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            const SizedBox(height: 32),
-                            Text(
-                              page['title']!,
-                              style: const TextStyle(
-                                fontSize: 28,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.blueAccent,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            const SizedBox(height: 16),
-                            Text(
-                              page['subtitle']!,
-                              style: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.black54,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            const SizedBox(height: 16),
-                            // Only Row uses observable
-                            Obx(
-                              () => Row(
+                          );
+                        } else {
+                          final page = controller.pages[index - 1];
+                          return Center(
+                            child: SingleChildScrollView(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: List.generate(
-                                  controller.pages.length + 1,
-                                  (i) => Container(
-                                    margin: const EdgeInsets.symmetric(
-                                      horizontal: 4,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const SizedBox(height: 24),
+                                  // Title above the image
+                                  Text(
+                                    page['title']!,
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.primaryAccentColor,
                                     ),
-                                    width: 10,
-                                    height: 10,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: controller.currentPage.value == i
-                                          ? Colors.blueAccent
-                                          : Colors.grey[300],
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  const SizedBox(height: 16),
+                                  ClayContainer(
+                                    color: AppColors.primaryColor,
+                                    borderRadius: 24,
+                                    depth: 40,
+                                    spread: 8,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(24.0),
+                                      child: Image.asset(
+                                        page['image']!,
+                                        height: 160,
+                                        fit: BoxFit.contain,
+                                      ),
                                     ),
                                   ),
-                                ),
+                                  const SizedBox(height: 24),
+                                  Text(
+                                    page['subtitle']!,
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.black87,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  const SizedBox(height: 16),
+                                  Obx(
+                                    () => Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: List.generate(
+                                        controller.pages.length + 1,
+                                        (i) => Container(
+                                          margin: const EdgeInsets.symmetric(
+                                            horizontal: 4,
+                                          ),
+                                          width: 10,
+                                          height: 10,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color:
+                                                controller.currentPage.value ==
+                                                    i
+                                                ? AppColors.primaryAccentColor
+                                                : Colors.grey[300],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 24),
+                                ],
                               ),
                             ),
-                            const SizedBox(height: 32),
-                          ],
+                          );
+                        }
+                      },
+                    ),
+                  ),
+
+                  SizedBox(
+                    width: Get.width / 1.5,
+                    height: 52,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (controller.currentPage.value <
+                            controller.pages.length) {
+                          _pageController.nextPage(
+                            duration: const Duration(milliseconds: 400),
+                            curve: Curves.ease,
+                          );
+                        } else {
+                          controller.finishOnboarding();
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primaryAccentColor,
+                        foregroundColor: Colors.white,
+                        elevation: 6,
+                        shadowColor: AppColors.primaryAccentColor.withOpacity(
+                          0.3,
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 16,
+                          horizontal: 24,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        textStyle: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    );
-                  }
-                },
-              ),
-            ),
-
-
-            SizedBox(
-              width: Get.width/1.5,
-              height: 50,
-              child:ElevatedButton(
-                onPressed: () {
-                  if (controller.currentPage.value <
-                      controller.pages.length) {
-                    _pageController.nextPage(
-                      duration: const Duration(milliseconds: 400),
-                      curve: Curves.ease,
-                    );
-                  } else {
-                    controller.finishOnboarding();
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blueAccent,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                      child: const Text(
+                        'Next',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.1,
+                        ),
+                      ),
+                    ),
                   ),
-                  textStyle: const TextStyle(fontSize: 18),
-                ),
-                child: const Text('Next'),
+                  const SizedBox(height: 16),
+                ],
               ),
             ),
-
-          ],
+          ),
         ),
       ),
     );
