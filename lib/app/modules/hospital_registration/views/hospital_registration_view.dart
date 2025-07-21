@@ -225,6 +225,124 @@ class HospitalRegistrationView extends GetView<HospitalRegistrationController> {
                                   child: SizedBox(
                                     height: 45,
                                     child: ElevatedButton(
+                                      onPressed: controller.goToNextPage,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            AppColors.primaryAccentColor,
+                                        foregroundColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                        ),
+                                        elevation: 0,
+                                      ),
+                                      child: const Text('Next'),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      // Page 3: Facility Details
+                      SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            AppWidgets().gapH24(),
+                            Text(
+                              'Facility Details',
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.primaryAccentColor,
+                              ),
+                            ),
+                            AppWidgets().gapH24(),
+                            _buildTextField(controller.nameController, 'Name'),
+                            _buildPhoneField(
+                              controller.dayPhoneController,
+                              controller.dayPhoneCountryCode,
+                              'Day Phone Number',
+                            ),
+                            _buildTextField(
+                              controller.locationController,
+                              'Location',
+                            ),
+                            _buildPhoneField(
+                              controller.nightPhoneController,
+                              controller.nightPhoneCountryCode,
+                              'Night Phone Number',
+                            ),
+                            _buildTextField(
+                              controller.emailPage3Controller,
+                              'Email',
+                            ),
+                            _buildTextField(
+                              controller.countryPage3Controller,
+                              'Country',
+                            ),
+                            _buildTextField(
+                              controller.addressController,
+                              'Address',
+                            ),
+                            _buildTextField(controller.cityController, 'City'),
+                            _buildTextField(
+                              controller.postcodeController,
+                              'Postcode',
+                            ),
+                            _buildTextField(
+                              controller.currencyController,
+                              'Currency',
+                            ),
+                            _buildTextField(
+                              controller.consumptionTaxController,
+                              'Consumption Tax (%)',
+                            ),
+                            _buildTextField(
+                              controller.buildingNameController,
+                              'Building Name',
+                            ),
+                            _buildTextField(
+                              controller.numberOfRoomsController,
+                              'Number of Rooms',
+                            ),
+                            _buildTextField(
+                              controller.websiteUrlController,
+                              'Website URL',
+                            ),
+                            AppWidgets().gapH16(),
+                            _buildCheckbox(controller.hasParking, 'Parking'),
+                            _buildCheckbox(
+                              controller.isWheelchairAccessible,
+                              'Wheelchair Accessible',
+                            ),
+                            _buildCheckbox(
+                              controller.hasWheelchairToilet,
+                              'Wheelchair Toilet',
+                            ),
+                            _buildCheckbox(
+                              controller.hasVisualSupport,
+                              'Visually Impaired Support',
+                            ),
+                            _buildCheckbox(
+                              controller.hasHearingSupport,
+                              'Hearing Impairments Support',
+                            ),
+                            _buildCheckbox(
+                              controller.hasForeignLanguageSupport,
+                              'Foreign Language Support',
+                            ),
+                            const SizedBox(height: 32),
+                            _buildDepartmentSection(controller),
+                            const SizedBox(height: 32),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: SizedBox(
+                                    height: 45,
+                                    child: ElevatedButton(
                                       onPressed: controller.goToPreviousPage,
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.white12,
@@ -247,7 +365,7 @@ class HospitalRegistrationView extends GetView<HospitalRegistrationController> {
                                     height: 45,
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        // TODO: Handle next
+                                        // TODO: Handle submit
                                       },
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor:
@@ -260,7 +378,7 @@ class HospitalRegistrationView extends GetView<HospitalRegistrationController> {
                                         ),
                                         elevation: 0,
                                       ),
-                                      child: const Text('Next'),
+                                      child: const Text('Submit'),
                                     ),
                                   ),
                                 ),
@@ -275,6 +393,174 @@ class HospitalRegistrationView extends GetView<HospitalRegistrationController> {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDepartmentSection(HospitalRegistrationController controller) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Departments',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: AppColors.primaryAccentColor,
+          ),
+        ),
+        AppWidgets().gapH16(),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: controller.departments
+              .map(
+                (d) => Obx(
+                  () => ActionChip(
+                    label: Text(d),
+                    backgroundColor: controller.selectedDepartment.value == d
+                        ? AppColors.primaryAccentColor
+                        : Colors.grey[300],
+                    labelStyle: TextStyle(
+                      color: controller.selectedDepartment.value == d
+                          ? Colors.white
+                          : Colors.black,
+                    ),
+                    onPressed: () => controller.selectDepartment(d),
+                  ),
+                ),
+              )
+              .toList(),
+        ),
+        Obx(() {
+          if (controller.selectedDepartment.value.isEmpty) {
+            return const SizedBox.shrink();
+          }
+          final subSpecialties =
+              controller.subSpecialties[controller.selectedDepartment.value] ??
+              [];
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AppWidgets().gapH16(),
+              Text(
+                'Sub-specialties for ${controller.selectedDepartment.value}',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.primaryAccentColor,
+                ),
+              ),
+              ...subSpecialties
+                  .map(
+                    (s) => Obx(
+                      () => CheckboxListTile(
+                        title: Text(s),
+                        value: controller.subSpecialtyStates[s] ?? false,
+                        onChanged: (val) =>
+                            controller.toggleSubSpecialty(s, val),
+                        activeColor: AppColors.primaryAccentColor,
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ],
+          );
+        }),
+      ],
+    );
+  }
+
+  Widget _buildTextField(TextEditingController controller, String label) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: ClayContainer(
+        depth: 16,
+        spread: 2,
+        color: AppColors.primaryColor,
+        borderRadius: 8,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 2),
+          child: TextField(
+            controller: controller,
+            decoration: InputDecoration(
+              labelText: label,
+              border: InputBorder.none,
+              contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPhoneField(
+    TextEditingController controller,
+    RxString countryCode,
+    String label,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Row(
+        children: [
+          ClayContainer(
+            depth: 16,
+            spread: 2,
+            color: AppColors.primaryColor,
+            borderRadius: 8,
+            child: CountryCodePicker(
+              onChanged: (country) =>
+                  countryCode.value = country.dialCode ?? '',
+              initialSelection: countryCode.value.isNotEmpty
+                  ? countryCode.value
+                  : '+1',
+              favorite: const ['+1', '+91'],
+              showCountryOnly: false,
+              showOnlyCountryWhenClosed: false,
+              alignLeft: false,
+              textStyle: const TextStyle(color: Colors.black),
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: ClayContainer(
+              depth: 16,
+              spread: 2,
+              color: AppColors.primaryColor,
+              borderRadius: 8,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 2),
+                child: TextField(
+                  controller: controller,
+                  keyboardType: TextInputType.phone,
+                  decoration: InputDecoration(
+                    labelText: label,
+                    border: InputBorder.none,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCheckbox(RxBool controller, String title) {
+    return Obx(
+      () => ClayContainer(
+        depth: 16,
+        spread: 2,
+        color: AppColors.primaryColor,
+        borderRadius: 8,
+        child: CheckboxListTile(
+          title: Text(title),
+          value: controller.value,
+          onChanged: (val) => controller.value = val ?? false,
+          activeColor: AppColors.primaryAccentColor,
         ),
       ),
     );
