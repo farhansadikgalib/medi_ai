@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:medi/app/routes/app_pages.dart';
-import 'package:medi/core/helper/print_log.dart';
-import 'package:medi/generated/assets.dart';
+import 'package:medi/app/core/helper/print_log.dart';
+import 'package:medi/app/generated/assets.dart';
 
-import '../../../../core/helper/shared_value_helper.dart';
+import '../../../core/helper/shared_value_helper.dart';
 
 class OnboardingController extends GetxController {
   var currentPage = 0.obs;

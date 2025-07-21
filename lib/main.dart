@@ -8,11 +8,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_value/shared_value.dart';
 
+import 'app/core/binding/initial_binding.dart';
+import 'app/core/constants/app_constants.dart';
+import 'app/core/helper/language_helper.dart';
+import 'app/core/style/app_colors.dart';
 import 'app/routes/app_pages.dart';
-import 'core/binding/initial_binding.dart';
-import 'core/constants/app_constants.dart';
-import 'core/helper/language_helper.dart';
-import 'core/style/app_colors.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

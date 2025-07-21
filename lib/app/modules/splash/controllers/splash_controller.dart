@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:medi/app/routes/app_pages.dart';
 
-import '../../../../core/helper/auth_helper.dart';
-import '../../../../core/helper/shared_value_helper.dart';
+import '../../../core/helper/auth_helper.dart';
+import '../../../core/helper/shared_value_helper.dart';
 
 class SplashController extends GetxController {
   var scale = 0.0.obs;
@@ -28,7 +28,7 @@ class SplashController extends GetxController {
   }
 
   void initializeApp() async {
-    await AuthHelper().loadItems();
+    AuthHelper().loadItems();
     await Future.delayed(2200.milliseconds).then((value) async {
       await isLoggedIn.load().whenComplete(() async {
         if (isLoggedIn.$) {

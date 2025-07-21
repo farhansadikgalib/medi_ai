@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:medi/app/routes/app_pages.dart';
-import '../../../../core/helper/print_log.dart';
-import '../../../../core/style/app_colors.dart';
+import '../../../core/helper/print_log.dart';
+import '../../../core/style/app_colors.dart';
 import '../controllers/register_controller.dart';
 
 class RegisterView extends GetView<RegisterController> {
@@ -159,13 +159,6 @@ class RegisterView extends GetView<RegisterController> {
                       width: double.infinity,
                       height: 48,
                       child: ElevatedButton(
-                        child: const Text(
-                          'Continue',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primaryAccentColor,
                           foregroundColor: Colors.white,
@@ -174,11 +167,19 @@ class RegisterView extends GetView<RegisterController> {
                           ),
                           elevation: 0,
                         ),
-                        onPressed: (controller.agreeTerms && controller.agreePrivacy)
+                        onPressed:
+                            (controller.agreeTerms && controller.agreePrivacy)
                             ? () {
                                 controller.showUserTypeSelectionSection();
                               }
                             : null,
+                        child: const Text(
+                          'Continue',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -205,22 +206,26 @@ class RegisterView extends GetView<RegisterController> {
                         final label = type == UserType.patient
                             ? 'Patient'
                             : type == UserType.hospital
-                                ? 'Hospital'
-                                : 'Ambulance';
+                            ? 'Hospital'
+                            : 'Ambulance';
                         final icon = type == UserType.patient
                             ? FontAwesomeIcons.user
                             : type == UserType.hospital
-                                ? FontAwesomeIcons.hospital
-                                : FontAwesomeIcons.ambulance;
+                            ? FontAwesomeIcons.hospital
+                            : FontAwesomeIcons.ambulance;
                         final isSelected = controller.selectedUserType == type;
                         return GestureDetector(
                           onTap: () => controller.selectUserType(type),
                           child: Card(
-                            color: isSelected ? AppColors.primaryAccentColor : Colors.white12,
+                            color: isSelected
+                                ? AppColors.primaryAccentColor
+                                : Colors.white12,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16),
                               side: BorderSide(
-                                color: isSelected ? AppColors.primaryAccentColor : Colors.transparent,
+                                color: isSelected
+                                    ? AppColors.primaryAccentColor
+                                    : Colors.transparent,
                                 width: 2,
                               ),
                             ),
@@ -235,13 +240,17 @@ class RegisterView extends GetView<RegisterController> {
                                   FaIcon(
                                     icon,
                                     size: 40,
-                                    color: isSelected ? Colors.white : Colors.white70,
+                                    color: isSelected
+                                        ? Colors.white
+                                        : Colors.white70,
                                   ),
                                   const SizedBox(height: 16),
                                   Text(
                                     label,
                                     style: TextStyle(
-                                      color: isSelected ? Colors.white : Colors.white70,
+                                      color: isSelected
+                                          ? Colors.white
+                                          : Colors.white70,
                                       fontWeight: FontWeight.w600,
                                       fontSize: 14,
                                     ),
@@ -269,20 +278,23 @@ class RegisterView extends GetView<RegisterController> {
                         onPressed: controller.selectedUserType != null
                             ? () {
                                 // Handle registration continue with selected user type
-                                printLog('Continue with user type: ${controller
-                                    .selectedUserType}');
+                                printLog(
+                                  'Continue with user type: ${controller.selectedUserType}',
+                                );
 
-                                if(controller.selectedUserType == UserType.patient) {
+                                if (controller.selectedUserType ==
+                                    UserType.patient) {
                                   Get.toNamed(Routes.PATIENT_REGISTRATION);
-                                } else if(controller.selectedUserType == UserType.hospital) {
+                                } else if (controller.selectedUserType ==
+                                    UserType.hospital) {
                                   // Get.toNamed('/hospital-registration');
-                                } else if(controller.selectedUserType == UserType.ambulance) {
+                                } else if (controller.selectedUserType ==
+                                    UserType.ambulance) {
                                   // Get.toNamed('/ambulance-registration');
                                 }
-
                               }
                             : null,
-                        child:  Text(
+                        child: Text(
                           'Continue',
                           style: TextStyle(
                             fontSize: 18,
@@ -301,4 +313,3 @@ class RegisterView extends GetView<RegisterController> {
     );
   }
 }
-

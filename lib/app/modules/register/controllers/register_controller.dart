@@ -1,68 +1,65 @@
 import 'package:flutter/material.dart';
-    import 'package:get/get.dart';
-import 'package:medi/core/helper/print_log.dart';
-    import 'package:medi/generated/assets.dart';
+import 'package:get/get.dart';
+import 'package:medi/app/generated/assets.dart';
 
-    enum UserType { patient, hospital, ambulance }
+import '../../../core/helper/print_log.dart';
 
-    class RegisterController extends GetxController {
-      final pageController = PageController();
-      int currentPage = 0;
+enum UserType { patient, hospital, ambulance }
 
-      bool showAgreement = false;
-      bool showUserTypeSelection = false;
-      bool agreeTerms = false;
-      bool agreePrivacy = false;
+class RegisterController extends GetxController {
+  final pageController = PageController();
+  int currentPage = 0;
 
-      UserType? selectedUserType;
+  bool showAgreement = false;
+  bool showUserTypeSelection = false;
+  bool agreeTerms = false;
+  bool agreePrivacy = false;
 
-      final titles = [
-        'Welcome',
-        'Discover',
-        'Connect',
-      ];
+  UserType? selectedUserType;
 
-      final subtitles = [
-        'Start your journey',
-        'Find new features',
-        'Meet new people',
-      ];
+  final titles = ['Welcome', 'Discover', 'Connect'];
 
-      final images = [
-        Assets.dashboardIconsL1,
-        Assets.categoryIconsEmergencyRoom,
-        Assets.categoryIconsRehabilitation,
-      ];
+  final subtitles = [
+    'Start your journey',
+    'Find new features',
+    'Meet new people',
+  ];
 
-      void onPageChanged(int index) {
-        currentPage = index;
-        update();
-      }
+  final images = [
+    Assets.dashboardIconsL1,
+    Assets.categoryIconsEmergencyRoom,
+    Assets.categoryIconsRehabilitation,
+  ];
 
-      void showAgreementSection() {
-        showAgreement = true;
-        update();
-      }
+  void onPageChanged(int index) {
+    currentPage = index;
+    update();
+  }
 
-      void setAgreeTerms(bool value) {
-        agreeTerms = value;
-        update();
-      }
+  void showAgreementSection() {
+    showAgreement = true;
+    update();
+  }
 
-      void setAgreePrivacy(bool value) {
-        agreePrivacy = value;
-        update();
-      }
+  void setAgreeTerms(bool value) {
+    agreeTerms = value;
+    update();
+  }
 
-      void showUserTypeSelectionSection() {
-        showUserTypeSelection = true;
-        update();
-      }
+  void setAgreePrivacy(bool value) {
+    agreePrivacy = value;
+    update();
+  }
 
-      void selectUserType(UserType type) {
-        selectedUserType = type;
-        update();
-        // Handle further navigation or logic here if needed
-        printLog('Selected user type: $type');
-      }
-    }
+  void showUserTypeSelectionSection() {
+    showUserTypeSelection = true;
+    update();
+  }
+
+  void selectUserType(UserType type) {
+    selectedUserType = type;
+    update();
+    // Handle further navigation or logic here if needed
+    printLog('Selected user type: $type');
+  }
+}

@@ -3,7 +3,7 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import '../../../../core/style/app_colors.dart';
+import '../../../core/style/app_colors.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/login_controller.dart';
 
@@ -243,7 +243,7 @@ class LoginView extends GetView<LoginController> {
                       ),
                       elevation: 0,
                     ),
-                    child:  Text('login'.tr),
+                    child: Text('login'.tr),
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -252,7 +252,7 @@ class LoginView extends GetView<LoginController> {
                   children: [
                     const Text("Are you new here?"),
                     TextButton(
-                      onPressed: ()=>Get.toNamed(Routes.REGISTER),
+                      onPressed: () => Get.toNamed(Routes.REGISTER),
                       style: TextButton.styleFrom(
                         foregroundColor: AppColors.primaryAccentColor,
                       ),

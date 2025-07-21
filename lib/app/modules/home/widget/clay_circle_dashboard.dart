@@ -2,8 +2,8 @@ import 'package:clay_containers/widgets/clay_container.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:medi/core/style/app_colors.dart';
 
+import '../../../core/style/app_colors.dart';
 import '../model/home_items.dart';
 
 class ClayCircleDashboardCard extends StatelessWidget {

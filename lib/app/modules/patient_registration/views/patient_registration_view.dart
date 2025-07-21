@@ -4,8 +4,8 @@ import 'package:clay_containers/widgets/clay_container.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:medi/core/helper/app_widgets.dart';
-import '../../../../core/style/app_colors.dart';
+import 'package:medi/app/core/helper/app_widgets.dart';
+import '../../../core/style/app_colors.dart';
 import '../controllers/patient_registration_controller.dart';
 
 class PatientRegistrationView extends GetView<PatientRegistrationController> {

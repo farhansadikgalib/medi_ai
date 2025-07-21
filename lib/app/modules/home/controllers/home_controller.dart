@@ -1,9 +1,7 @@
 import 'dart:ui';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
-import 'package:medi/core/base/base_controller.dart';
-
+import '../../../core/base/base_controller.dart';
 import '../../../routes/app_pages.dart';
 import '../model/home_items.dart';
 
@@ -18,14 +16,14 @@ class HomeController extends BaseController {
     }
   }
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
   static const List<HomeItem> items = [
     HomeItem('Global', FontAwesomeIcons.globe, Routes.GLOBAL),
-    HomeItem('Register', FontAwesomeIcons.userPlus, Routes.PATIENT_REGISTRATION),
+    HomeItem(
+      'Register',
+      FontAwesomeIcons.userPlus,
+      Routes.PATIENT_REGISTRATION,
+    ),
     HomeItem('Login', FontAwesomeIcons.rightToBracket, Routes.LOGIN),
     HomeItem('Hospital', FontAwesomeIcons.hospital, Routes.HOSPITAL),
     HomeItem('Doctor', FontAwesomeIcons.userDoctor, Routes.DOCTOR),

@@ -9,15 +9,9 @@ class AmbulanceView extends GetView<AmbulanceController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('AmbulanceView'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text('AmbulanceView'), centerTitle: true),
       body: const Center(
-        child: Text(
-          'AmbulanceView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+        child: Text('AmbulanceView is working', style: TextStyle(fontSize: 20)),
       ),
     );
   }

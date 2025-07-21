@@ -39,7 +39,9 @@ class PatientRegistrationController extends GetxController {
   var underMedication = ''.obs;
 
   // Page 4: Vaccination entries
-  RxList<VaccinationEntry> vaccinations = <VaccinationEntry>[VaccinationEntry()].obs;
+  RxList<VaccinationEntry> vaccinations = <VaccinationEntry>[
+    VaccinationEntry(),
+  ].obs;
 
   void addVaccinationEntry() {
     vaccinations.add(VaccinationEntry());
@@ -67,7 +69,9 @@ class PatientRegistrationController extends GetxController {
   }
 
   // Page 5: Emergency contacts
-  RxList<EmergencyContactEntry> emergencyContacts = <EmergencyContactEntry>[EmergencyContactEntry()].obs;
+  RxList<EmergencyContactEntry> emergencyContacts = <EmergencyContactEntry>[
+    EmergencyContactEntry(),
+  ].obs;
 
   void addEmergencyContactEntry() {
     emergencyContacts.add(EmergencyContactEntry());
@@ -88,34 +92,34 @@ class PatientRegistrationController extends GetxController {
   final physicalActivity = ''.obs;
   final preferences = ''.obs;
 
-
   // Page 7: Image upload
 
   final uploadedImages = <XFile>[].obs;
 
-
   Future<void> pickImages() async {
-
     final ImagePicker picker = ImagePicker();
-    final List<XFile>? images = await picker.pickMultiImage();
-    if (images != null) {
-      uploadedImages.addAll(images);
+    final List<XFile> images = await picker.pickMultiImage();
+    uploadedImages.addAll(images);
     }
-  }
 
   void removeImage(int index) {
     uploadedImages.removeAt(index);
   }
 
-
   // Navigation
   void goToNextPage() {
-    pageController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    pageController.nextPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
     update();
   }
 
   void goToPreviousPage() {
-    pageController.previousPage(duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    pageController.previousPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
     update();
   }
 
@@ -127,10 +131,12 @@ class PatientRegistrationController extends GetxController {
       lastDate: DateTime.now(),
     );
     if (picked != null) {
-      dobController.text = '${picked.year}-${picked.month.toString().padLeft(2, '0')}-${picked.day.toString().padLeft(2, '0')}';
+      dobController.text =
+          '${picked.year}-${picked.month.toString().padLeft(2, '0')}-${picked.day.toString().padLeft(2, '0')}';
       final now = DateTime.now();
       int age = now.year - picked.year;
-      if (now.month < picked.month || (now.month == picked.month && now.day < picked.day)) {
+      if (now.month < picked.month ||
+          (now.month == picked.month && now.day < picked.day)) {
         age--;
       }
       ageController.text = age.toString();

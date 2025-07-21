@@ -9,15 +9,9 @@ class HospitalView extends GetView<HospitalController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('HospitalView'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text('HospitalView'), centerTitle: true),
       body: const Center(
-        child: Text(
-          'HospitalView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+        child: Text('HospitalView is working', style: TextStyle(fontSize: 20)),
       ),
     );
   }

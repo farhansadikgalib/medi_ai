@@ -1,21 +1,16 @@
-// In lib/app/modules/home/views/home_view.dart
-
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:clay_containers/clay_containers.dart';
-import 'package:medi/core/base/base_view.dart';
-import 'package:medi/core/style/app_colors.dart';
+import 'package:medi/app/core/base/base_view.dart';
+import '../../../core/style/app_colors.dart';
 import '../controllers/home_controller.dart';
 import 'dart:math';
 import '../widget/clay_circle_dashboard.dart';
 
 class HomeView extends BaseView<HomeController> {
-
-
+  HomeView({super.key});
 
   @override
   PreferredSizeWidget? appBar(BuildContext context) {
-
     return null;
   }
 
