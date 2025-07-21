@@ -1,3 +1,4 @@
+import 'package:medi/app/modules/hospital_registration/model/operating_hours_entry.dart';
 import 'package:clay_containers/widgets/clay_container.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
@@ -521,6 +522,93 @@ class HospitalRegistrationView extends GetView<HospitalRegistrationController> {
                                   child: SizedBox(
                                     height: 45,
                                     child: ElevatedButton(
+                                      onPressed: controller.goToNextPage,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            AppColors.primaryAccentColor,
+                                        foregroundColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                        ),
+                                        elevation: 0,
+                                      ),
+                                      child: const Text('Submit'),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      // Page 5: Opening Hours
+                      SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'First Opening and Closing Hours:',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.primaryAccentColor,
+                              ),
+                            ),
+                            AppWidgets().gapH16(),
+                            ...controller.firstOpeningHours.map(
+                              (entry) => _buildOperatingHoursRow(
+                                controller,
+                                entry,
+                                context,
+                              ),
+                            ),
+                            AppWidgets().gapH24(),
+                            Text(
+                              'Second Opening and Closing Hours:',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.primaryAccentColor,
+                              ),
+                            ),
+                            AppWidgets().gapH16(),
+                            ...controller.secondOpeningHours.map(
+                              (entry) => _buildOperatingHoursRow(
+                                controller,
+                                entry,
+                                context,
+                              ),
+                            ),
+                            const SizedBox(height: 32),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: SizedBox(
+                                    height: 45,
+                                    child: ElevatedButton(
+                                      onPressed: controller.goToPreviousPage,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.white12,
+                                        foregroundColor:
+                                            AppColors.primaryAccentColor,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                        ),
+                                        elevation: 0,
+                                      ),
+                                      child: const Text('Back'),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 16),
+                                Expanded(
+                                  child: SizedBox(
+                                    height: 45,
+                                    child: ElevatedButton(
                                       onPressed: controller.submitRegistration,
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor:
@@ -549,6 +637,63 @@ class HospitalRegistrationView extends GetView<HospitalRegistrationController> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildOperatingHoursRow(
+    HospitalRegistrationController controller,
+    OperatingHoursEntry entry,
+    BuildContext context,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Row(
+        children: [
+          Expanded(flex: 2, child: Text(entry.day)),
+          Expanded(
+            flex: 1,
+            child: Obx(
+              () => Switch(
+                value: entry.isOpen.value,
+                onChanged: (val) => entry.isOpen.value = val,
+                activeColor: AppColors.primaryAccentColor,
+              ),
+            ),
+          ),
+          Obx(
+            () => entry.isOpen.value
+                ? Expanded(
+                    flex: 4,
+                    child: Row(
+                      children: [
+                        _buildTimePicker(context, controller, entry.openTime),
+                        const Text(' To '),
+                        _buildTimePicker(context, controller, entry.closeTime),
+                      ],
+                    ),
+                  )
+                : const Spacer(flex: 4),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTimePicker(
+    BuildContext context,
+    HospitalRegistrationController controller,
+    Rx<TimeOfDay?> time,
+  ) {
+    return InkWell(
+      onTap: () => controller.pickTime(context, time),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: Colors.grey),
+        ),
+        child: Obx(() => Text(time.value?.format(context) ?? 'Select')),
       ),
     );
   }

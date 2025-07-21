@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:medi/app/modules/hospital_registration/model/operating_hours_entry.dart';
 
 class HospitalRegistrationController extends GetxController {
   final pageController = PageController();
@@ -143,6 +144,40 @@ class HospitalRegistrationController extends GetxController {
 
   void removeImage(int index) {
     uploadedImages.removeAt(index);
+  }
+
+  // Page 5: Operating Hours
+  final RxList<OperatingHoursEntry> firstOpeningHours =
+      <OperatingHoursEntry>[].obs;
+  final RxList<OperatingHoursEntry> secondOpeningHours =
+      <OperatingHoursEntry>[].obs;
+  final List<String> weekdays = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+
+  @override
+  void onInit() {
+    for (var day in weekdays) {
+      firstOpeningHours.add(OperatingHoursEntry(day));
+      secondOpeningHours.add(OperatingHoursEntry(day));
+    }
+    super.onInit();
+  }
+
+  Future<void> pickTime(BuildContext context, Rx<TimeOfDay?> time) async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: time.value ?? TimeOfDay.now(),
+    );
+    if (picked != null && picked != time.value) {
+      time.value = picked;
+    }
   }
 
   // Navigation
