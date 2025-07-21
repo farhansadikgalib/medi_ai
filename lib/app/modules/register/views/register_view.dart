@@ -177,7 +177,7 @@ class RegisterView extends GetView<RegisterController> {
                         'that I\'m at least 16 years old.',
 
                         style: TextStyle(
-                          color: controller.agreeTerms
+                          color: controller.agreePrivacy
                               ? AppColors.primaryAccentColor
                               : Colors.black,
                           fontSize: 12,
