@@ -7,6 +7,7 @@ import 'package:medi/app/core/helper/app_widgets.dart';
 import 'package:medi/app/core/style/app_colors.dart';
 
 import '../controllers/hospital_registration_controller.dart';
+import 'dart:io';
 
 class HospitalRegistrationView extends GetView<HospitalRegistrationController> {
   const HospitalRegistrationView({super.key});
@@ -364,9 +365,163 @@ class HospitalRegistrationView extends GetView<HospitalRegistrationController> {
                                   child: SizedBox(
                                     height: 45,
                                     child: ElevatedButton(
-                                      onPressed: () {
-                                        // TODO: Handle submit
-                                      },
+                                      onPressed: controller.goToNextPage,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            AppColors.primaryAccentColor,
+                                        foregroundColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                        ),
+                                        elevation: 0,
+                                      ),
+                                      child: const Text('Next'),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      // Page 4: Upload Documents/Images
+                      SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            ClayContainer(
+                              depth: 16,
+                              spread: 2,
+                              color: AppColors.primaryColor,
+                              borderRadius: 60,
+                              child: SizedBox(
+                                width: 100,
+                                height: 100,
+                                child: Icon(
+                                  Icons.upload_file,
+                                  size: 48,
+                                  color: AppColors.primaryAccentColor,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 24),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 16),
+                              child: Text(
+                                'Upload hospital/clinic registration documents, licenses, certifications, or any other relevant documentation. These documents will be reviewed during the verification process to ensure compliance with healthcare regulations.',
+                                style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ),
+                            Obx(
+                              () => Wrap(
+                                spacing: 8,
+                                runSpacing: 8,
+                                children: List.generate(
+                                  controller.uploadedImages.length,
+                                  (index) => Stack(
+                                    alignment: Alignment.topRight,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(8),
+                                        child: Image.file(
+                                          File(
+                                            controller
+                                                .uploadedImages[index]
+                                                .path,
+                                          ),
+                                          width: 100,
+                                          height: 100,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () =>
+                                            controller.removeImage(index),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.red,
+                                            borderRadius: BorderRadius.circular(
+                                              12,
+                                            ),
+                                          ),
+                                          child: const Icon(
+                                            Icons.close,
+                                            color: Colors.white,
+                                            size: 20,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            ClayContainer(
+                              depth: 16,
+                              spread: 2,
+                              color: AppColors.primaryColor,
+                              borderRadius: 8,
+                              child: InkWell(
+                                onTap: controller.pickImages,
+                                child: Container(
+                                  width: double.infinity,
+                                  padding: const EdgeInsets.all(16),
+                                  child: Column(
+                                    children: [
+                                      Icon(
+                                        Icons.cloud_upload,
+                                        size: 48,
+                                        color: AppColors.primaryAccentColor,
+                                      ),
+                                      const SizedBox(height: 8),
+                                      Text(
+                                        'Upload Documents',
+                                        style: TextStyle(
+                                          color: AppColors.primaryAccentColor,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 32),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: SizedBox(
+                                    height: 45,
+                                    child: ElevatedButton(
+                                      onPressed: controller.goToPreviousPage,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.white12,
+                                        foregroundColor:
+                                            AppColors.primaryAccentColor,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                        ),
+                                        elevation: 0,
+                                      ),
+                                      child: const Text('Back'),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 16),
+                                Expanded(
+                                  child: SizedBox(
+                                    height: 45,
+                                    child: ElevatedButton(
+                                      onPressed: controller.submitRegistration,
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor:
                                             AppColors.primaryAccentColor,

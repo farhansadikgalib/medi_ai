@@ -38,7 +38,7 @@ class SplashController extends GetxController {
             Get.offNamed(Routes.ONBOARDING);
           } else {
             AuthHelper().clearUserData();
-            Get.offNamed(Routes.ONBOARDING);
+            Get.offNamed(Routes.LOGIN);
           }
         }
       });

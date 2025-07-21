@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class HospitalRegistrationController extends GetxController {
   final pageController = PageController();
@@ -131,6 +132,19 @@ class HospitalRegistrationController extends GetxController {
     subSpecialtyStates[specialty] = value ?? false;
   }
 
+  // Page 4: Image upload
+  final uploadedImages = <XFile>[].obs;
+
+  Future<void> pickImages() async {
+    final ImagePicker picker = ImagePicker();
+    final List<XFile> images = await picker.pickMultiImage();
+    uploadedImages.addAll(images);
+  }
+
+  void removeImage(int index) {
+    uploadedImages.removeAt(index);
+  }
+
   // Navigation
   void goToNextPage() {
     pageController.nextPage(
@@ -146,5 +160,10 @@ class HospitalRegistrationController extends GetxController {
       curve: Curves.easeInOut,
     );
     update();
+  }
+
+  void submitRegistration() {
+    // TODO: Implement registration submission
+    Get.snackbar('Success', 'Registration submitted!');
   }
 }
