@@ -1,3 +1,5 @@
+import 'package:any_image_view/any_image_view.dart';
+import 'package:clay_containers/widgets/clay_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -29,7 +31,7 @@ class RegisterView extends GetView<RegisterController> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     SizedBox(
-                      height: 300,
+                      height: Get.height / 2,
                       child: PageView.builder(
                         controller: controller.pageController,
                         onPageChanged: controller.onPageChanged,
@@ -38,13 +40,26 @@ class RegisterView extends GetView<RegisterController> {
                           return Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image.asset(
-                                controller.images[index],
-                                height: 100,
+                              ClayContainer(
+                                color: AppColors.primaryColor,
+                                borderRadius: 24,
+                                depth: 40,
+                                spread: 8,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(24.0),
+                                  child: AnyImageView(
+                                    imagePath: controller.images[index],
+                                    height: 160,
+                                    fit: BoxFit.contain,
+
+                                  ),
+                                ),
                               ),
+
                               const SizedBox(height: 24),
                               Text(
                                 controller.titles[index],
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold,
@@ -84,17 +99,29 @@ class RegisterView extends GetView<RegisterController> {
                     ),
                     const SizedBox(height: 24),
                     SizedBox(
-                      width: double.infinity,
-                      height: 45,
+                      width: Get.width / 1.5,
+                      height: 52,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primaryAccentColor,
                           foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                          elevation: 6,
+                          shadowColor: AppColors.primaryAccentColor.withOpacity(
+                            0.3,
                           ),
-                          elevation: 0,
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 16,
+                            horizontal: 24,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          textStyle: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
+
                         onPressed: () {
                           if (controller.currentPage < 2) {
                             controller.pageController.nextPage(
@@ -134,38 +161,63 @@ class RegisterView extends GetView<RegisterController> {
                       ),
                     ),
                     const SizedBox(height: 24),
+
+                    Text('Please read our privacy policy and confirm the '
+                        'following declarations. consents can be withdrawn in'
+                        ' settings at any time.',textAlign: TextAlign.center,),
+                    const SizedBox(height: 24),
+
                     CheckboxListTile(
-                      value: controller.agreeTerms,
-                      onChanged: (val) => controller.setAgreeTerms(val!),
-                      title: const Text(
-                        'I agree to the Terms and Conditions',
-                        style: TextStyle(color: Colors.black),
-                      ),
+                      value: controller.agreePrivacy,
+                      onChanged: (val) => controller.setAgreePrivacy(val!),
+                      title:  Text(
+                        'I agree to MediAi term and conditions and confirm '
+                            'that I\'m at least 16 years old.',
+
+                        style: TextStyle(color: controller
+                            .agreeTerms?AppColors.primaryAccentColor
+                            :Colors
+                            .black,fontSize: 12, fontWeight: FontWeight.bold),                      ),
                       controlAffinity: ListTileControlAffinity.leading,
                       activeColor: AppColors.primaryAccentColor,
                     ),
                     CheckboxListTile(
-                      value: controller.agreePrivacy,
-                      onChanged: (val) => controller.setAgreePrivacy(val!),
-                      title: const Text(
-                        'I agree to the Privacy Policy',
-                        style: TextStyle(color: Colors.black),
+                      value: controller.agreeTerms,
+                      onChanged: (val) => controller.setAgreeTerms(val!),
+                      title:  Text(
+                        'I hereby consent to MediAi using any personal health data I voluntarily share here for the purpose of assisting in health assessments and providing guidance.',
+                        style: TextStyle(color: controller
+                            .agreeTerms?AppColors.primaryAccentColor
+                            :Colors
+                            .black,fontSize: 12, fontWeight: FontWeight.bold),
                       ),
                       controlAffinity: ListTileControlAffinity.leading,
                       activeColor: AppColors.primaryAccentColor,
                     ),
                     const SizedBox(height: 24),
+
                     SizedBox(
-                      width: double.infinity,
-                      height: 48,
+                      width: Get.width / 1.5,
+                      height: 52,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primaryAccentColor,
                           foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                          elevation: 6,
+                          shadowColor: AppColors.primaryAccentColor.withOpacity(
+                            0.3,
                           ),
-                          elevation: 0,
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 16,
+                            horizontal: 24,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          textStyle: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         onPressed:
                             (controller.agreeTerms && controller.agreePrivacy)

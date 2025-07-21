@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:medi/app/generated/assets.dart';
 
+import '../../../../generated/assets.dart';
 import '../../../core/helper/print_log.dart';
 
 enum UserType { patient, hospital, ambulance }
@@ -17,19 +17,20 @@ class RegisterController extends GetxController {
 
   UserType? selectedUserType;
 
-  final titles = ['Welcome', 'Discover', 'Connect'];
+  final titles = [
+    'Travel with confidence, knowing you\'re safe wherever you '
+        'go',
+    'Talk or chat with hospital staff and medical professionals in any language using MediAi',
+    'Let\'s get started!',
+  ];
 
   final subtitles = [
-    'Start your journey',
-    'Find new features',
-    'Meet new people',
+    'Count on MediAi to assist in diagnosing health situations and identifying the closest and most suitable hospital for your needs',
+    'Instantly chat in any language with hospital staff and medical professionals using MediAi',
+    'Manage your medical data, initiate one-click ambulance calls, experience real-time chat translation, enjoy live voice-to-text translation, share personal chat room with medical facilities, and more—all in one place',
   ];
 
-  final images = [
-    Assets.dashboardIconsL1,
-    Assets.categoryIconsEmergencyRoom,
-    Assets.categoryIconsRehabilitation,
-  ];
+  final images = [Assets.register1, Assets.register2, Assets.register3];
 
   void onPageChanged(int index) {
     currentPage = index;

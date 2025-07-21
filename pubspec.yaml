@@ -19,7 +19,7 @@ dependencies:
   url_launcher:
   shared_value:
   intl:
-  any_image_view: ^1.5.0
+  any_image_view: ^1.6.0
   easy_debounce:
   water_drop_nav_bar:
   font_awesome_flutter:
@@ -49,5 +49,6 @@ flutter:
     - assets/dashboardIcons/p/
     - assets/image/
     - assets/onboarding/
+    - assets/register/
 
 

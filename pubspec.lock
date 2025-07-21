@@ -13,10 +13,10 @@ packages:
     dependency: "direct main"
     description:
       name: any_image_view
-      sha256: c8127f72b72f19e1095fa6788eadde27daa215f851219c9b7e53f3edc71f69ea
+      sha256: "89c5cf7a42b9965ca7fb9ff8d8952bba6b29a2df444636aa68dfeea6663dc1fe"
       url: "https://pub.dev"
     source: hosted
-    version: "1.5.0"
+    version: "1.6.0"
   archive:
     dependency: transitive
     description:

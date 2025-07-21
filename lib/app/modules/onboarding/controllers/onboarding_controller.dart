@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:medi/app/routes/app_pages.dart';
 import 'package:medi/app/core/helper/print_log.dart';
-import 'package:medi/app/generated/assets.dart';
 
+import '../../../../generated/assets.dart';
 import '../../../core/helper/shared_value_helper.dart';
 
 class OnboardingController extends GetxController {

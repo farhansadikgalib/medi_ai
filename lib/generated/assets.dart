@@ -2,24 +2,16 @@
 class Assets {
   Assets._();
 
-  static const String categoryIconsConsultation =
-      'assets/categoryIcons/consultation.png';
+  static const String categoryIconsConsultation = 'assets/categoryIcons/consultation.png';
   static const String categoryIconsDental = 'assets/categoryIcons/dental.png';
-  static const String categoryIconsEmergencyRoom =
-      'assets/categoryIcons/emergencyRoom.png';
-  static const String categoryIconsLaboratory =
-      'assets/categoryIcons/laboratory.png';
-  static const String categoryIconsMaternity =
-      'assets/categoryIcons/Maternity.png';
-  static const String categoryIconsMedication =
-      'assets/categoryIcons/medication.png';
-  static const String categoryIconsMiscellaneous =
-      'assets/categoryIcons/Miscellaneous.png';
+  static const String categoryIconsEmergencyRoom = 'assets/categoryIcons/emergencyRoom.png';
+  static const String categoryIconsLaboratory = 'assets/categoryIcons/laboratory.png';
+  static const String categoryIconsMaternity = 'assets/categoryIcons/Maternity.png';
+  static const String categoryIconsMedication = 'assets/categoryIcons/medication.png';
+  static const String categoryIconsMiscellaneous = 'assets/categoryIcons/Miscellaneous.png';
   static const String categoryIconsOther = 'assets/categoryIcons/Other.png';
-  static const String categoryIconsRehabilitation =
-      'assets/categoryIcons/rehabilitation.png';
-  static const String categoryIconsSurgical =
-      'assets/categoryIcons/surgical.png';
+  static const String categoryIconsRehabilitation = 'assets/categoryIcons/rehabilitation.png';
+  static const String categoryIconsSurgical = 'assets/categoryIcons/surgical.png';
   static const String dashboardIconsL1 = 'assets/dashboardIcons/l1.png';
   static const String hAf1 = 'assets/dashboardIcons/h/af1.png';
   static const String hB1 = 'assets/dashboardIcons/h/b1.png';
@@ -57,7 +49,8 @@ class Assets {
   static const String pT1 = 'assets/dashboardIcons/p/t1.png';
   static const String pTranslator = 'assets/dashboardIcons/p/translator.png';
   static const String pTranslator1 = 'assets/dashboardIcons/p/translator1.png';
-  static const String signup1 = 'assets/signup/1.png';
-  static const String signup2 = 'assets/signup/2.png';
-  static const String signup3 = 'assets/signup/3.png';
+  static const String register1 = 'assets/register/1.png';
+  static const String register2 = 'assets/register/2.png';
+  static const String register3 = 'assets/register/3.png';
+
 }
