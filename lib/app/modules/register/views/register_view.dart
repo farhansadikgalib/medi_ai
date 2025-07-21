@@ -359,7 +359,7 @@ class RegisterView extends GetView<RegisterController> {
                                   Get.toNamed(Routes.PATIENT_REGISTRATION);
                                 } else if (controller.selectedUserType ==
                                     UserType.hospital) {
-                                   Get.toNamed(Routes.HOSPITAL_REGISTRATION);
+                                  Get.toNamed(Routes.HOSPITAL_REGISTRATION);
                                 } else if (controller.selectedUserType ==
                                     UserType.ambulance) {
                                   // Get.toNamed('/ambulance-registration');

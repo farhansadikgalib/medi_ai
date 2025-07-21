@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:clay_containers/widgets/clay_container.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
@@ -336,7 +335,7 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                         value: controller.gender.value.isEmpty
                                             ? null
                                             : controller.gender.value,
-                                        items: ['Male', 'Female', 'Other']
+                                        items: ['Male', 'Female']
                                             .map(
                                               (g) => DropdownMenuItem(
                                                 value: g,
@@ -383,6 +382,7 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                                   'AB-',
                                                   'O+',
                                                   'O-',
+                                                  'I\'m not sure',
                                                 ]
                                                 .map(
                                                   (b) => DropdownMenuItem(
@@ -692,16 +692,21 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                             .value,
                                   items:
                                       [
-                                            'None',
-                                            'Diabetes',
-                                            'Hypertension',
-                                            'Asthma',
-                                            'Heart Disease',
-                                            'Other',
+                                            'Select an option',
+                                            'Healthy individual',
+                                            'Healthy under medication',
+                                            'Healthy undergoing medical preventive',
+                                            'Healthy undergoing medical treatment',
+                                            'Healthy with a medical history',
+                                            'Healthy with disability',
+                                            'Unhealthy individual',
+                                            'Unhealthy undergoing medical treatment',
                                           ]
                                           .map(
                                             (c) => DropdownMenuItem(
-                                              value: c,
+                                              value: c == 'Select an option'
+                                                  ? ''
+                                                  : c,
                                               child: Text(c),
                                             ),
                                           )
@@ -711,7 +716,7 @@ class PatientRegistrationView extends GetView<PatientRegistrationController> {
                                           val ?? '',
                                   decoration: const InputDecoration(
                                     labelText:
-                                        'What is your current medical condition?*',
+                                        'What is your current medical condition?',
                                     border: InputBorder.none,
                                     contentPadding: EdgeInsets.symmetric(
                                       horizontal: 12,
