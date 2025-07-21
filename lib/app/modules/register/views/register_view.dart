@@ -51,7 +51,6 @@ class RegisterView extends GetView<RegisterController> {
                                     imagePath: controller.images[index],
                                     height: 160,
                                     fit: BoxFit.contain,
-
                                   ),
                                 ),
                               ),
@@ -162,34 +161,44 @@ class RegisterView extends GetView<RegisterController> {
                     ),
                     const SizedBox(height: 24),
 
-                    Text('Please read our privacy policy and confirm the '
-                        'following declarations. consents can be withdrawn in'
-                        ' settings at any time.',textAlign: TextAlign.center,),
+                    Text(
+                      'Please read our privacy policy and confirm the '
+                      'following declarations. consents can be withdrawn in'
+                      ' settings at any time.',
+                      textAlign: TextAlign.center,
+                    ),
                     const SizedBox(height: 24),
 
                     CheckboxListTile(
                       value: controller.agreePrivacy,
                       onChanged: (val) => controller.setAgreePrivacy(val!),
-                      title:  Text(
+                      title: Text(
                         'I agree to MediAi term and conditions and confirm '
-                            'that I\'m at least 16 years old.',
+                        'that I\'m at least 16 years old.',
 
-                        style: TextStyle(color: controller
-                            .agreeTerms?AppColors.primaryAccentColor
-                            :Colors
-                            .black,fontSize: 12, fontWeight: FontWeight.bold),                      ),
+                        style: TextStyle(
+                          color: controller.agreeTerms
+                              ? AppColors.primaryAccentColor
+                              : Colors.black,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                       controlAffinity: ListTileControlAffinity.leading,
                       activeColor: AppColors.primaryAccentColor,
                     ),
                     CheckboxListTile(
                       value: controller.agreeTerms,
                       onChanged: (val) => controller.setAgreeTerms(val!),
-                      title:  Text(
+                      title: Text(
                         'I hereby consent to MediAi using any personal health data I voluntarily share here for the purpose of assisting in health assessments and providing guidance.',
-                        style: TextStyle(color: controller
-                            .agreeTerms?AppColors.primaryAccentColor
-                            :Colors
-                            .black,fontSize: 12, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          color: controller.agreeTerms
+                              ? AppColors.primaryAccentColor
+                              : Colors.black,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       controlAffinity: ListTileControlAffinity.leading,
                       activeColor: AppColors.primaryAccentColor,
@@ -316,16 +325,27 @@ class RegisterView extends GetView<RegisterController> {
                     ),
                     const SizedBox(height: 32),
                     SizedBox(
-                      width: double.infinity,
-                      height: 48,
+                      width: Get.width / 1.5,
+                      height: 52,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primaryAccentColor,
                           foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                          elevation: 6,
+                          shadowColor: AppColors.primaryAccentColor.withOpacity(
+                            0.3,
                           ),
-                          elevation: 0,
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 16,
+                            horizontal: 24,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          textStyle: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         onPressed: controller.selectedUserType != null
                             ? () {
@@ -339,7 +359,7 @@ class RegisterView extends GetView<RegisterController> {
                                   Get.toNamed(Routes.PATIENT_REGISTRATION);
                                 } else if (controller.selectedUserType ==
                                     UserType.hospital) {
-                                  // Get.toNamed('/hospital-registration');
+                                   Get.toNamed(Routes.HOSPITAL_REGISTRATION);
                                 } else if (controller.selectedUserType ==
                                     UserType.ambulance) {
                                   // Get.toNamed('/ambulance-registration');

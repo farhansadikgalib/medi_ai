@@ -10,6 +10,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/hospital/bindings/hospital_binding.dart';
 import '../modules/hospital/views/hospital_view.dart';
+import '../modules/hospital_registration/bindings/hospital_registration_binding.dart';
+import '../modules/hospital_registration/views/hospital_registration_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/onboarding/bindings/onboarding_binding.dart';
@@ -81,6 +83,11 @@ class AppPages {
       name: _Paths.ONBOARDING,
       page: () => OnboardingView(),
       binding: OnboardingBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOSPITAL_REGISTRATION,
+      page: () => const HospitalRegistrationView(),
+      binding: HospitalRegistrationBinding(),
     ),
   ];
 }
