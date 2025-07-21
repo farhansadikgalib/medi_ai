@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medi/app/core/helper/app_widgets.dart';
 import 'package:medi/app/core/style/app_colors.dart';
+import 'package:medi/app/modules/hospital_registration/model/staff_entry.dart';
 
 import '../controllers/hospital_registration_controller.dart';
 import 'dart:io';
@@ -534,7 +535,7 @@ class HospitalRegistrationView extends GetView<HospitalRegistrationController> {
                                         ),
                                         elevation: 0,
                                       ),
-                                      child: const Text('Submit'),
+                                      child: const Text('Next'),
                                     ),
                                   ),
                                 ),
@@ -609,6 +610,82 @@ class HospitalRegistrationView extends GetView<HospitalRegistrationController> {
                                   child: SizedBox(
                                     height: 45,
                                     child: ElevatedButton(
+                                      onPressed: controller.goToNextPage,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            AppColors.primaryAccentColor,
+                                        foregroundColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                        ),
+                                        elevation: 0,
+                                      ),
+                                      child: const Text('Next'),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      // Page 6: Staff
+                      SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Obx(
+                              () => Column(
+                                children: List.generate(
+                                  controller.staffEntries.length,
+                                  (index) => _buildStaffEntry(
+                                    controller,
+                                    controller.staffEntries[index],
+                                    index,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            AppWidgets().gapH16(),
+                            Row(
+                              children: [
+                                ElevatedButton.icon(
+                                  onPressed: controller.addStaffEntry,
+                                  icon: const Icon(Icons.add),
+                                  label: const Text('Add More'),
+                                ),
+                              ],
+                            ),
+                            AppWidgets().gapH24(),
+                            const SizedBox(height: 8),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: SizedBox(
+                                    height: 45,
+                                    child: ElevatedButton(
+                                      onPressed: controller.goToPreviousPage,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.white12,
+                                        foregroundColor:
+                                            AppColors.primaryAccentColor,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                        ),
+                                        elevation: 0,
+                                      ),
+                                      child: const Text('Back'),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 16),
+                                Expanded(
+                                  child: SizedBox(
+                                    height: 45,
+                                    child: ElevatedButton(
                                       onPressed: controller.submitRegistration,
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor:
@@ -635,6 +712,177 @@ class HospitalRegistrationView extends GetView<HospitalRegistrationController> {
                 ),
               ],
             ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStaffEntry(
+    HospitalRegistrationController controller,
+    StaffEntry entry,
+    int index,
+  ) {
+    return Column(
+      children: [
+        Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _buildCategorySelector(entry, 'Doctor', Icons.local_hospital),
+                _buildCategorySelector(entry, 'Nurse', Icons.person),
+              ],
+            ),
+            AppWidgets().gapH16(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _buildCategorySelector(entry, 'Reception', Icons.room_service),
+                _buildCategorySelector(entry, 'Other', Icons.more_horiz),
+              ],
+            ),
+          ],
+        ),
+        AppWidgets().gapH16(),
+        _buildTextField(entry.nameController, 'Name'),
+        AppWidgets().gapH16(),
+        _buildStaffDepartmentSection(controller, entry),
+        if (index > 0)
+          Align(
+            alignment: Alignment.centerRight,
+            child: IconButton(
+              icon: const Icon(Icons.delete, color: Colors.red),
+              onPressed: () => controller.removeStaffEntry(index),
+            ),
+          ),
+        const Divider(),
+      ],
+    );
+  }
+
+  Widget _buildStaffDepartmentSection(
+    HospitalRegistrationController controller,
+    StaffEntry entry,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Departments',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: AppColors.primaryAccentColor,
+          ),
+        ),
+        AppWidgets().gapH16(),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: controller.departments
+              .map(
+                (d) => Obx(
+                  () => ActionChip(
+                    label: Text(d),
+                    backgroundColor: entry.selectedDepartment.value == d
+                        ? AppColors.primaryAccentColor
+                        : Colors.grey[300],
+                    labelStyle: TextStyle(
+                      color: entry.selectedDepartment.value == d
+                          ? Colors.white
+                          : Colors.black,
+                    ),
+                    onPressed: () {
+                      if (entry.selectedDepartment.value == d) {
+                        entry.selectedDepartment.value = '';
+                      } else {
+                        entry.selectedDepartment.value = d;
+                      }
+                    },
+                  ),
+                ),
+              )
+              .toList(),
+        ),
+        Obx(() {
+          if (entry.selectedDepartment.value.isEmpty) {
+            return const SizedBox.shrink();
+          }
+          final subSpecialties =
+              controller.subSpecialties[entry.selectedDepartment.value] ?? [];
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AppWidgets().gapH16(),
+              Text(
+                'Sub-specialties for ${entry.selectedDepartment.value}',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.primaryAccentColor,
+                ),
+              ),
+              ...subSpecialties
+                  .map(
+                    (s) => Obx(
+                      () => CheckboxListTile(
+                        title: Text(s),
+                        value: entry.subSpecialtyStates[s] ?? false,
+                        onChanged: (val) {
+                          entry.subSpecialtyStates[s] = val ?? false;
+                        },
+                        activeColor: AppColors.primaryAccentColor,
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ],
+          );
+        }),
+      ],
+    );
+  }
+
+  Widget _buildCategorySelector(
+    StaffEntry entry,
+    String category,
+    IconData icon,
+  ) {
+    return Obx(
+      () => GestureDetector(
+        onTap: () => entry.category.value = category,
+        child: ClayContainer(
+          width: Get.width / 3,
+          height: Get.width / 3,
+          color: entry.category.value == category
+              ? AppColors.primaryAccentColor
+              : AppColors.primaryColor,
+          borderRadius: 16,
+          depth: entry.category.value == category ? 0 : 12,
+          spread: entry.category.value == category ? 0 : 6,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 24,
+                color: entry.category.value == category
+                    ? Colors.white
+                    : AppColors.primaryAccentColor,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                category,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: entry.category.value == category
+                      ? Colors.white
+                      : AppColors.primaryAccentColor,
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -878,7 +1126,7 @@ class HospitalRegistrationView extends GetView<HospitalRegistrationController> {
           width: Get.width / 2.8,
           height: Get.width / 2.8,
           color: controller.selectedType.value == type
-              ? AppColors.primaryAccentColor.withOpacity(0.2)
+              ? AppColors.primaryAccentColor
               : AppColors.primaryColor,
           borderRadius: 16,
           depth: controller.selectedType.value == type ? 0 : 12,
@@ -886,14 +1134,22 @@ class HospitalRegistrationView extends GetView<HospitalRegistrationController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon, size: 48, color: AppColors.primaryAccentColor),
+              Icon(
+                icon,
+                size: 48,
+                color: controller.selectedType.value == type
+                    ? Colors.white
+                    : AppColors.primaryAccentColor,
+              ),
               const SizedBox(height: 12),
               Text(
                 type,
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.primaryAccentColor,
+                  color: controller.selectedType.value == type
+                      ? Colors.white
+                      : AppColors.primaryAccentColor,
                 ),
               ),
             ],

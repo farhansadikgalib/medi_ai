@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:medi/app/modules/hospital_registration/model/operating_hours_entry.dart';
+import 'package:medi/app/modules/hospital_registration/model/staff_entry.dart';
+import 'package:medi/app/routes/app_pages.dart';
 
 class HospitalRegistrationController extends GetxController {
   final pageController = PageController();
@@ -180,6 +182,19 @@ class HospitalRegistrationController extends GetxController {
     }
   }
 
+  // Page 6: Staff
+  final RxList<StaffEntry> staffEntries = <StaffEntry>[StaffEntry()].obs;
+
+  void addStaffEntry() {
+    staffEntries.add(StaffEntry());
+  }
+
+  void removeStaffEntry(int index) {
+    if (staffEntries.length > 1) {
+      staffEntries.removeAt(index);
+    }
+  }
+
   // Navigation
   void goToNextPage() {
     pageController.nextPage(
@@ -198,7 +213,7 @@ class HospitalRegistrationController extends GetxController {
   }
 
   void submitRegistration() {
-    // TODO: Implement registration submission
     Get.snackbar('Success', 'Registration submitted!');
+    Get.offAllNamed(Routes.HOME);
   }
 }
