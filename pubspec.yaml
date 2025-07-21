@@ -47,5 +47,7 @@ flutter:
     - assets/dashboardIcons/
     - assets/dashboardIcons/h/
     - assets/dashboardIcons/p/
+    - assets/image/
+    - assets/onboarding/
 
 
