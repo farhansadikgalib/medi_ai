@@ -34,6 +34,7 @@ dependencies:
   image_picker: ^1.1.2
   clay_containers: ^0.3.4
   country_code_picker: ^3.3.0
+  flutter_dotenv:
 
 dev_dependencies:
   flutter_test:
@@ -50,5 +51,6 @@ flutter:
     - assets/image/
     - assets/onboarding/
     - assets/register/
+    - .env
 
 
