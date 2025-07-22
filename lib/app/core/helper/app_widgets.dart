@@ -60,7 +60,7 @@ class AppWidgets {
     int waitingTime = 2,
     int animationDuration = 500,
     snackPosition = SnackPosition.BOTTOM,
-    Color backgroundColor = AppColors.primaryColor,
+    Color backgroundColor = AppColors.primaryAccentColor,
     double backgroundColorOpacity = .8,
     bool closeAllSnacks = true,
     colorText = AppColors.white,
