@@ -5,8 +5,9 @@ import '../core/config/app_config.dart';
 import '../core/connection_manager/connection_manager_controller.dart';
 import '../core/helper/app_helper.dart';
 import '../core/helper/app_widgets.dart';
-import '../core/helper/print_log.dart';
+import '../core/helper/print_log.dart' show printLog;
 import '../core/helper/shared_value_helper.dart';
+
 
 class ApiClient {
   late final Dio dio;
@@ -41,13 +42,13 @@ class ApiClient {
     );
   }
 
-  Future<Response?> get(
-    String url,
-    dynamic retry, {
-    Map<String, dynamic>? mQueryParameters,
-    bool isLoaderRequired = false,
-    bool isHeaderRequired = false,
-  }) async {
+  Future<dynamic> get(
+      String url,
+      dynamic retry, {
+        Map<String, dynamic>? mQueryParameters,
+        bool isLoaderRequired = false,
+        bool isHeaderRequired = false,
+      }) async {
     if (!_isConnected()) return null;
     _setHeaders(isHeaderRequired);
     _showLoader(isLoaderRequired);
@@ -55,48 +56,49 @@ class ApiClient {
     try {
       final response = await dio.get(url, queryParameters: mQueryParameters);
       _hideLoader(isLoaderRequired);
-      return response;
+      return _parseResponse(response);
     } on DioException catch (e) {
       _handleException(e, isHeaderRequired);
       return null;
     }
   }
 
-  Future<Response?> post(
-    String url,
-    dynamic data,
-    dynamic retry, {
-    bool isHeaderRequired = false,
-    bool isLoaderRequired = false,
-    bool isFormData = false,
-    bool isJsonEncodeRequired = true,
-  }) async {
+  Future<dynamic> post(
+      String url,
+      dynamic data,
+      dynamic retry, {
+        bool isHeaderRequired = false,
+        bool isLoaderRequired = false,
+        bool isFormData = false,
+        bool isJsonEncodeRequired = true,
+      }) async {
     if (!_isConnected()) return null;
     _setHeaders(isHeaderRequired);
     _showLoader(isLoaderRequired);
 
     try {
-      final payload = isFormData
+      final payload =
+      isFormData
           ? FormData.fromMap(data)
           : isJsonEncodeRequired
           ? jsonEncode(data)
           : data;
       final response = await dio.post(url, data: payload);
       _hideLoader(isLoaderRequired);
-      return response;
+      return _parseResponse(response);
     } on DioException catch (e) {
       _handleException(e, isHeaderRequired);
       return null;
     }
   }
 
-  Future<Response?> put(
-    String url,
-    dynamic data,
-    dynamic retry, {
-    bool isHeaderRequired = true,
-    bool isLoaderRequired = false,
-  }) async {
+  Future<dynamic> put(
+      String url,
+      dynamic data,
+      dynamic retry, {
+        bool isHeaderRequired = true,
+        bool isLoaderRequired = false,
+      }) async {
     if (!_isConnected()) return null;
     _setHeaders(isHeaderRequired);
     _showLoader(isLoaderRequired);
@@ -104,20 +106,20 @@ class ApiClient {
     try {
       final response = await dio.put(url, data: data);
       _hideLoader(isLoaderRequired);
-      return response;
+      return _parseResponse(response);
     } on DioException catch (e) {
       _handleException(e, isHeaderRequired);
       return null;
     }
   }
 
-  Future<Response?> delete(
-    String url,
-    dynamic data,
-    dynamic retry, {
-    bool isHeaderRequired = false,
-    bool isLoaderRequired = false,
-  }) async {
+  Future<dynamic> delete(
+      String url,
+      dynamic data,
+      dynamic retry, {
+        bool isHeaderRequired = false,
+        bool isLoaderRequired = false,
+      }) async {
     if (!_isConnected()) return null;
     _setHeaders(isHeaderRequired);
     _showLoader(isLoaderRequired);
@@ -125,7 +127,7 @@ class ApiClient {
     try {
       final response = await dio.delete(url, data: data);
       _hideLoader(isLoaderRequired);
-      return response;
+      return _parseResponse(response);
     } on DioException catch (e) {
       _handleException(e, isHeaderRequired);
       return null;
@@ -141,6 +143,13 @@ class ApiClient {
   }
 
   void _handleStatusCode(int? statusCode, Response? response) {
+    if (response == null) {
+      AppWidgets().getSnackBar(
+        title: "Error",
+        message: "No response from server. Please try again later.",
+      );
+      return;
+    }
     switch (statusCode) {
       case 200:
       case 201:
@@ -184,51 +193,38 @@ class ApiClient {
         );
         break;
       default:
-        if (statusCode != null) {
-          AppWidgets().getSnackBar(
-            title: "Error",
-            message: "Unexpected error: $statusCode",
-          );
-        } else {
-          AppWidgets().getSnackBar(
-            title: "Error",
-            message: "Unknown error occurred.",
-          );
-        }
+        AppWidgets().getSnackBar(
+          title: "Error",
+          message: "Unexpected error: $statusCode",
+        );
     }
   }
 
   void _handleError(DioException err, ErrorInterceptorHandler handler) async {
     final statusCode = err.response?.statusCode;
     _handleStatusCode(statusCode, err.response);
-    if (statusCode == 401) {
-      dio.options.headers["Authorization"] = _accessToken;
-      printLog("Refreshing token done");
-      handler.next(err);
-    } else {
-      if (err.response != null) {
-        handler.resolve(err.response!);
-      } else {
-        handler.next(err);
-      }
-    }
-  }
 
+    // if (statusCode == 401) {
+    //   dio.options.headers["Authorization"] = _accessToken;
+    //   printLog("Attempting to refresh token and retrying request.");
+    //
+    //   try {
+    //     // Only retry if err.requestOptions is not null
+    //     if (err.requestOptions != null) {
+    //       final response = await dio.fetch(err.requestOptions);
+    //       handler.resolve(response);
+    //     } else {
+    //       handler.next(err);
+    //     }
+    //   } on DioException catch (e) {
+    //     handler.next(e);
+    //   }
+    // } else {
+      handler.next(err);
+  //  }
+  }
   void _handleException(DioException e, bool isHeaderRequired) {
     AppHelper().hideLoader();
-    final responseStr = e.response?.data?.toString() ?? '';
-    if (responseStr.startsWith('<!DOCTYPE html>')) {
-      AppWidgets().getSnackBar(
-        title: "Error",
-        message:
-            "Server returned an unexpected response. Please try again later.",
-      );
-      return;
-    }
-    AppWidgets().getSnackBar(
-      title: "Error",
-      message: "Something went wrong. Please try again later.",
-    );
   }
 
   bool _isConnected() {
@@ -246,4 +242,30 @@ class ApiClient {
   void _hideLoader(bool isLoaderRequired) {
     if (isLoaderRequired) AppHelper().hideLoader();
   }
+
+  dynamic _parseResponse(Response response) {
+    final contentType = response.headers['content-type']?.join(',') ?? '';
+    if ((response.statusCode == 200 || response.statusCode == 201) &&
+        contentType.contains('application/json')) {
+      try {
+        return jsonDecode(response.data);
+      } catch (e) {
+        printLog('JSON decode error: $e');
+        return null;
+      }
+    } else {
+      printLog('Unexpected response: ${response.statusCode}, ${response.data}');
+      return null;
+    }
+  }
+}
+
+T safeFromJson<T>(dynamic response, T Function(Map<String, dynamic>) fromJson, T empty) {
+  if (response == null) return empty;
+  if (response is Map<String, dynamic>) return fromJson(response);
+  try {
+    final map = jsonDecode(response.toString());
+    if (map is Map<String, dynamic>) return fromJson(map);
+  } catch (_) {}
+  return empty;
 }
