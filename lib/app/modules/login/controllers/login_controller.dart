@@ -39,9 +39,18 @@ void login() async {
       var response = await AuthRepository().getSignIn(email, password);
       if (response.success == true) {
         await AuthHelper().setUserData(response, DateTime.now().toIso8601String());
-        Get.offAllNamed(Routes.HOME);
+        AppWidgets().getSnackBar(
+          title: "Success",
+          message: response.message,
+        );
+       // Get.offAllNamed(Routes.HOME);
       } else {
-        AppWidgets().getSnackBar(title: "Info", message: response.message);
+
+        AppWidgets().getSnackBar(
+          title: "Info",
+          message: '${response.message}',
+        );
+
       }
     } else {
       // Phone login
