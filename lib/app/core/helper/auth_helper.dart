@@ -3,9 +3,8 @@ import 'package:medi/app/core/helper/shared_value_helper.dart';
 import '../../remote/model/auth/login_response.dart';
 
 class AuthHelper {
-  void setUserData(
+   setUserData(
     LoginResponse loginResponse,
-    String getSRCode,
     String todayLoginTime,
   ) {
     if (loginResponse.token != null) {
@@ -15,10 +14,10 @@ class AuthHelper {
       accessToken.$ = "Bearer ${loginResponse.token}";
       accessToken.save();
 
-      userName.$ = loginResponse.name!;
+      userName.$ = loginResponse.data!.owner!;
       userName.save();
 
-      email.$ = loginResponse.email!;
+      email.$ = loginResponse.data!.email!;
       email.save();
     }
   }
